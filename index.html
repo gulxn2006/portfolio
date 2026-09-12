@@ -88,10 +88,10 @@
       position: fixed;
       inset: 0;
       background: linear-gradient(90deg, 
-        rgba(8, 10, 15, 0.96) 0%, 
-        rgba(8, 10, 15, 0.86) 32%, 
-        rgba(8, 10, 15, 0.35) 60%, 
-        rgba(8, 10, 15, 0.05) 100%
+        rgba(8, 10, 15, 0.95) 0%, 
+        rgba(8, 10, 15, 0.82) 32%, 
+        rgba(8, 10, 15, 0.3) 60%, 
+        rgba(8, 10, 15, 0.04) 100%
       );
       pointer-events: none;
       z-index: 2;
@@ -121,6 +121,12 @@
       z-index: 20;
     }
 
+    .nav-brand-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
     .nav-brand {
       font-family: var(--font-body);
       font-size: 16px;
@@ -128,9 +134,30 @@
       color: #ffffff;
       text-decoration: none;
       letter-spacing: 0.5px;
-      display: flex;
+    }
+
+    /* Cinematic Intro Trigger Button */
+    .nav-intro-trigger {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--primary-yellow);
+      background: rgba(255, 204, 0, 0.12);
+      border: 1px solid rgba(255, 204, 0, 0.4);
+      padding: 3px 9px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 5px;
+      letter-spacing: 1px;
+      transition: all 0.25s ease;
+    }
+
+    .nav-intro-trigger:hover {
+      background: var(--primary-yellow);
+      color: #000;
+      box-shadow: 0 0 14px rgba(255, 204, 0, 0.4);
     }
 
     .nav-links {
@@ -146,13 +173,15 @@
       font-size: 13.5px;
       font-weight: 500;
       letter-spacing: 0.3px;
-      transition: color 0.25s;
+      transition: color 0.25s, transform 0.25s;
       cursor: pointer;
+      display: inline-block;
     }
 
     .nav-links a:hover,
     .nav-links a.active {
       color: #ffffff;
+      transform: translateY(-1px);
     }
 
     /* ========================================================
@@ -171,7 +200,7 @@
     /* Upper Lead Header (e.g. INTO THE) */
     .hero-lead {
       font-family: var(--font-display);
-      font-size: clamp(20px, 2.5vw, 30px);
+      font-size: clamp(19px, 2.3vw, 28px);
       font-weight: 800;
       letter-spacing: 3px;
       text-transform: uppercase;
@@ -180,35 +209,38 @@
       line-height: 1.1;
     }
 
-    /* Giant Title (e.g. WILD) with Split Text Animation */
+    /* Giant Title (e.g. WILD) with 3D Kinetic Split Text Animation */
     .hero-title {
       font-family: var(--font-display);
-      font-size: clamp(48px, 6.8vw, 92px);
+      font-size: clamp(48px, 6.6vw, 90px);
       font-weight: 900;
       letter-spacing: 1px;
       text-transform: uppercase;
       color: #ffffff;
       line-height: 0.92;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
-    /* Split Text Kinetic Effect */
+    /* World-Class 3D Kinetic Split Text */
     .split-word-wrap {
       display: inline-block;
       overflow: hidden;
       vertical-align: top;
       margin-right: 0.22em;
+      perspective: 800px;
     }
 
     .split-word-inner {
       display: inline-block;
-      transform: translateY(115%);
+      transform: translateY(120%) rotateX(-35deg);
       opacity: 0;
-      transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-origin: 50% 100%;
+      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
     }
 
     .split-word-inner.split-active {
-      transform: translateY(0%);
+      transform: translateY(0%) rotateX(0deg);
       opacity: 1;
     }
 
@@ -220,8 +252,47 @@
       line-height: 1.65;
       color: var(--text-muted);
       max-width: 480px;
-      margin-bottom: 28px;
+      margin-bottom: 22px;
       transition: opacity 0.4s ease;
+    }
+
+    /* Dynamic Skills Micro-Badges on Scroll */
+    .skills-pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+      max-width: 480px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .skills-pills-row.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .skill-chip {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 204, 0, 0.35);
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(8px);
+      transition: transform 0.25s, border-color 0.25s;
+    }
+
+    .skill-chip:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary-yellow);
+      background: rgba(255, 204, 0, 0.12);
     }
 
     /* Buttons Row (Explore all trips / Explore packages style) */
@@ -229,7 +300,7 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
       flex-wrap: wrap;
     }
 
@@ -417,7 +488,189 @@
     }
 
     /* ========================================================
-       RESPONSIVE DESIGN (MOBILE & TABLETS)
+       CINEMATIC PROMO INTRO OVERLAY
+       ======================================================== */
+    .cinema-intro-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 10, 15, 0.92);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.75s;
+      overflow: hidden;
+    }
+
+    .cinema-intro-overlay.dismissed {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Anamorphic Lens Flare Streak */
+    .anamorphic-flare {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(0, 200, 255, 0.7) 25%, #ffcc00 50%, rgba(0, 200, 255, 0.7) 75%, transparent 100%);
+      box-shadow: 0 0 35px #ffcc00, 0 0 60px rgba(0, 200, 255, 0.8);
+      transform: translateY(-50%) scaleX(0);
+      animation: flareSweep 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      pointer-events: none;
+    }
+
+    @keyframes flareSweep {
+      0% { transform: translateY(-50%) scaleX(0); opacity: 0; }
+      40% { opacity: 1; transform: translateY(-50%) scaleX(1.1); }
+      100% { opacity: 0.35; transform: translateY(-50%) scaleX(1); }
+    }
+
+    .intro-card {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 680px;
+      width: 100%;
+      padding: 34px 28px;
+      border: 1.5px solid rgba(255, 204, 0, 0.35);
+      border-radius: 12px;
+      background: radial-gradient(circle at 50% 30%, rgba(255, 204, 0, 0.08) 0%, rgba(12, 14, 22, 0.88) 75%);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.85), 0 0 35px rgba(255, 204, 0, 0.18);
+      animation: introCardIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes introCardIn {
+      0% { opacity: 0; transform: translateY(25px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .intro-studio-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--primary-yellow);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      text-shadow: 0 0 12px rgba(255, 204, 0, 0.5);
+    }
+
+    .intro-main-title {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 7.5vw, 76px);
+      font-weight: 900;
+      line-height: 0.92;
+      text-transform: uppercase;
+      color: #ffffff;
+      letter-spacing: 2px;
+      text-shadow: 0 0 32px rgba(255, 204, 0, 0.5);
+      margin-bottom: 10px;
+    }
+
+    .intro-main-title span {
+      color: var(--primary-yellow);
+      display: block;
+    }
+
+    .intro-sub {
+      font-family: var(--font-body);
+      font-size: clamp(12.5px, 2vw, 15px);
+      color: rgba(255, 255, 255, 0.88);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .intro-progress-box {
+      width: 100%;
+      max-width: 280px;
+      margin: 0 auto 20px auto;
+    }
+
+    .intro-progress-bar-bg {
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .intro-progress-bar-fill {
+      width: 0%;
+      height: 100%;
+      background: var(--primary-yellow);
+      box-shadow: 0 0 10px var(--primary-yellow);
+      transition: width 2.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .intro-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .intro-btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 28px;
+      background: var(--primary-yellow);
+      color: #0f1017;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 0 25px rgba(255, 204, 0, 0.5);
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .intro-btn-action:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 35px var(--primary-yellow);
+    }
+
+    .intro-btn-skip {
+      display: inline-flex;
+      align-items: center;
+      padding: 11px 20px;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.7);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    .intro-btn-skip:hover {
+      color: #fff;
+      border-color: var(--primary-yellow);
+    }
+
+    /* ========================================================
+       BALANCED & ATTRACTIVE MOBILE EXPERIENCE
        ======================================================== */
     @media (max-width: 900px) {
       .master-layout {
@@ -443,48 +696,68 @@
         padding: 18px 20px;
       }
 
+      /* Subtle Mobile Vignette that keeps visual animation open and luminous */
       .vignette {
         background: linear-gradient(180deg, 
-          rgba(8, 10, 15, 0.85) 0%, 
-          rgba(8, 10, 15, 0.3) 40%, 
-          rgba(8, 10, 15, 0.9) 100%
+          rgba(8, 10, 15, 0.72) 0%, 
+          rgba(8, 10, 15, 0.15) 35%, 
+          rgba(8, 10, 15, 0.8) 100%
         );
       }
 
-      .nav-links {
-        gap: 16px;
-        font-size: 12px;
+      .nav-brand-group {
+        gap: 10px;
       }
 
+      .nav-links {
+        gap: 14px;
+        font-size: 11.5px;
+      }
+
+      /* Vertically balanced placement: NOT at the bottom, and NOT covering whole image */
       .hero-content-wrapper {
         left: 20px;
         right: 20px;
-        top: auto;
-        bottom: 75px;
-        transform: none;
+        top: 44%;
+        bottom: auto;
+        transform: translateY(-50%);
+        max-width: 375px;
       }
 
       .hero-lead {
-        font-size: 16px;
+        font-size: 14px;
         letter-spacing: 2px;
+        margin-bottom: 2px;
       }
 
       .hero-title {
-        font-size: clamp(38px, 10.5vw, 54px);
+        font-size: clamp(36px, 10.5vw, 50px);
         margin-bottom: 12px;
+        line-height: 0.95;
       }
 
       .hero-desc {
-        padding-left: 14px;
+        padding-left: 12px;
         font-size: 12px;
         line-height: 1.55;
-        margin-bottom: 18px;
+        margin-bottom: 16px;
         max-width: 100%;
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .skills-pills-row {
+        gap: 6px;
+        margin-bottom: 16px;
+      }
+
+      .skill-chip {
+        font-size: 9.5px;
+        padding: 3px 8px;
       }
 
       .hero-actions {
         gap: 10px;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
       }
 
       .btn-solid, .btn-outline {
@@ -501,7 +774,7 @@
         left: 20px;
         bottom: 20px;
         flex-direction: row;
-        gap: 20px;
+        gap: 18px;
       }
 
       .bottom-pagination {
@@ -512,6 +785,39 @@
   </style>
 </head>
 <body>
+
+  <!-- Fullscreen Cinematic Intro Overlay -->
+  <div class="cinema-intro-overlay" id="cinema-intro-overlay">
+    <div class="anamorphic-flare"></div>
+    <div class="intro-card">
+      <div class="intro-studio-tag">
+        <span>IMPACT FRAMES // AI-NATIVE STUDIO PRESENTATION</span>
+      </div>
+      <h1 class="intro-main-title">
+        GULSHAN
+        <span>KUMAR</span>
+      </h1>
+      <p class="intro-sub">
+        BACKEND ARCHITECT • AI PLATFORMS • DISTRIBUTED SYSTEMS
+      </p>
+
+      <div class="intro-progress-box">
+        <div class="intro-progress-bar-bg">
+          <div class="intro-progress-bar-fill" id="intro-progress-fill"></div>
+        </div>
+      </div>
+
+      <div class="intro-actions">
+        <button class="intro-btn-action" onclick="dismissIntro()">
+          <span>ENTER EXPERIENCE</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+        </button>
+        <button class="intro-btn-skip" onclick="dismissIntro()">
+          SKIP INTRO
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- Background Video Frame Scroll Canvas -->
   <div id="canvas-container">
@@ -526,7 +832,12 @@
     
     <!-- Top Navigation Bar -->
     <header class="nav-bar">
-      <a class="nav-brand" href="#">Home</a>
+      <div class="nav-brand-group">
+        <a class="nav-brand" href="#">Home</a>
+        <button class="nav-intro-trigger" onclick="playPromoIntro()" title="Play Promo Intro">
+          <span>↺ INTRO</span>
+        </button>
+      </div>
 
       <ul class="nav-links">
         <li><a class="nav-item active" data-stage="0">Explore</a></li>
@@ -544,6 +855,16 @@
       <p class="hero-desc" id="hero-desc">
         Architecting high-concurrency systems, ultra-low latency APIs, and autonomous AI pipelines. Specializing in Laravel, MySQL optimization, and distributed cloud infrastructure with sub-20ms P99 responses.
       </p>
+
+      <!-- Dynamic Skills Micro-Badges on Scroll (Appears on Stack stage) -->
+      <div class="skills-pills-row" id="skills-pills-row">
+        <span class="skill-chip">PHP 8.x • 96%</span>
+        <span class="skill-chip">Laravel • 98%</span>
+        <span class="skill-chip">MySQL 8.0 • 94%</span>
+        <span class="skill-chip">Antigravity AI • 95%</span>
+        <span class="skill-chip">Redis Cluster</span>
+        <span class="skill-chip">REST & GraphQL</span>
+      </div>
 
       <div class="hero-actions">
         <a class="btn-solid" id="btn-primary" href="mailto:gulxn06@gmail.com">Contact Gulshan</a>
@@ -679,7 +1000,7 @@
         return null;
       }
 
-      // Cinematic Draw with Perfect Framing
+      // Attractive Balanced Cinematic Framing on Mobile & Desktop
       function drawFrame(img) {
         if (!img || !img.complete || img.naturalWidth === 0) return;
 
@@ -695,11 +1016,11 @@
         const mobile = window.innerWidth < 768;
 
         if (mobile) {
-          // Balanced framing on mobile (no 500% over-zoom)
-          drawW = cw * 1.25;
+          // Perfectly attractive mobile zoom: 1.45x width scaling fills gracefully
+          drawW = cw * 1.45;
           drawH = drawW / imgRatio;
           dx = (cw - drawW) / 2;
-          dy = (ch - drawH) / 2 - 25;
+          dy = (ch - drawH) / 2 - 10;
         } else {
           // Desktop: Shift frame gracefully towards the right like the reference image
           if (canvasRatio > imgRatio) {
@@ -721,13 +1042,14 @@
       }
 
       // ========================================================
-      // STAGES CONTENT DATA & SPLIT TEXT ANIMATION
+      // STAGES CONTENT DATA & KINETIC SPLIT TEXT ANIMATION
       // ========================================================
       const STAGES = [
         {
           lead: "BACKEND ARCHITECT",
           title: "GULSHAN KUMAR",
           desc: "Architecting high-concurrency systems, ultra-low latency APIs, and autonomous AI pipelines. Specializing in Laravel, MySQL optimization, and distributed microservices with sub-20ms P99 responses.",
+          showPills: false,
           btn1: { text: "Contact Gulshan", href: "mailto:gulxn06@gmail.com", target: "_self" },
           btn2: { text: "View GitHub", href: "https://github.com/gulxn2006/portfolio", target: "_blank" }
         },
@@ -735,6 +1057,7 @@
           lead: "TECHNICAL ARSENAL",
           title: "CORE STACK",
           desc: "Mastery in enterprise stacks: PHP 8.x, Laravel Framework, MySQL 8.0 indexing, Redis cluster caching, Antigravity AI agents, and resilient GraphQL/REST architectures engineered for scale.",
+          showPills: true,
           btn1: { text: "Explore Architecture", href: "https://github.com/gulxn2006/portfolio", target: "_blank" },
           btn2: { text: "Download CV", href: "mailto:gulxn06@gmail.com", target: "_self" }
         },
@@ -742,6 +1065,7 @@
           lead: "SYSTEM INTEGRITY",
           title: "BACKEND ENGINES",
           desc: "High-scale asynchronous queue workers, automated schema clustering, and real-time streaming pipelines delivering sub-20ms P99 latency with 99.99% enterprise uptime guarantees.",
+          showPills: false,
           btn1: { text: "View Repositories", href: "https://github.com/gulxn2006/portfolio", target: "_blank" },
           btn2: { text: "System Benchmarks", href: "https://github.com/gulxn2006/portfolio", target: "_blank" }
         },
@@ -749,6 +1073,7 @@
           lead: "INITIATE COLLABORATION",
           title: "LET'S CONNECT",
           desc: "Available for senior backend engineering roles, high-concurrency consulting, and AI-native platform directing. Reach out directly via email to initiate discussion.",
+          showPills: false,
           btn1: { text: "Email Gulshan", href: "mailto:gulxn06@gmail.com", target: "_self" },
           btn2: { text: "LinkedIn Profile", href: "https://linkedin.com/in/gulshan-kumar", target: "_blank" }
         }
@@ -759,6 +1084,7 @@
       const heroDesc = document.getElementById('hero-desc');
       const btnPrimary = document.getElementById('btn-primary');
       const btnSecondary = document.getElementById('btn-secondary');
+      const skillsPills = document.getElementById('skills-pills-row');
       const navItems = document.querySelectorAll('.nav-item');
       const pageDots = document.querySelectorAll('.page-dot');
       const scrubProgress = document.getElementById('scrub-progress');
@@ -767,7 +1093,7 @@
 
       let currentStageIndex = -1;
 
-      // Ultra-Smooth Kinetic Split Text Animation
+      // Ultra-Smooth 3D Kinetic Split Text Animation
       function applySplitText(element, text) {
         element.innerHTML = '';
         const words = text.split(' ');
@@ -777,12 +1103,12 @@
           const innerSpan = document.createElement('span');
           innerSpan.className = 'split-word-inner';
           innerSpan.textContent = word;
-          innerSpan.style.transitionDelay = `${idx * 0.05}s`;
+          innerSpan.style.transitionDelay = `${idx * 0.045}s`;
           wordWrap.appendChild(innerSpan);
           element.appendChild(wordWrap);
         });
 
-        // Trigger slide-up animation in next frame
+        // Trigger 3D slide-up animation in next frame
         requestAnimationFrame(() => {
           element.querySelectorAll('.split-word-inner').forEach(span => {
             span.classList.add('split-active');
@@ -795,7 +1121,7 @@
         currentStageIndex = index;
         const data = STAGES[index];
 
-        // Animate Lead & Title with Split Text
+        // Animate Lead & Title with 3D Split Text
         applySplitText(heroLead, data.lead);
         applySplitText(heroTitle, data.title);
 
@@ -804,7 +1130,14 @@
         setTimeout(() => {
           heroDesc.textContent = data.desc;
           heroDesc.style.opacity = '1';
-        }, 120);
+        }, 100);
+
+        // Show/Hide Skills Badges Row
+        if (data.showPills) {
+          skillsPills.classList.add('active');
+        } else {
+          skillsPills.classList.remove('active');
+        }
 
         // Update Buttons
         btnPrimary.textContent = data.btn1.text;
@@ -968,6 +1301,42 @@
           }
         }
       }
+
+      // ========================================================
+      // CINEMATIC PROMO INTRO CONTROLS
+      // ========================================================
+      const introOverlay = document.getElementById('cinema-intro-overlay');
+      const introFill = document.getElementById('intro-progress-fill');
+      let introTimer = null;
+
+      function startIntroAnimation() {
+        if (!introOverlay) return;
+        introOverlay.classList.remove('dismissed');
+        if (introFill) {
+          introFill.style.width = '0%';
+          setTimeout(() => {
+            introFill.style.width = '100%';
+          }, 60);
+        }
+        clearTimeout(introTimer);
+        introTimer = setTimeout(() => {
+          dismissIntro();
+        }, 3400);
+      }
+
+      window.dismissIntro = function() {
+        if (introOverlay) {
+          introOverlay.classList.add('dismissed');
+        }
+        clearTimeout(introTimer);
+      };
+
+      window.playPromoIntro = function() {
+        startIntroAnimation();
+      };
+
+      // Launch intro on initial page load
+      startIntroAnimation();
     })();
   </script>
 </body>
