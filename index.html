@@ -8,7 +8,7 @@
   <!-- Editorial Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cabinet+Grotesk:wght@700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -488,13 +488,13 @@
     }
 
     /* ========================================================
-       BLOCKBUSTER MOVIE HERO TITLE CARD INTRO
-       (Epic Action / Cinema Hero Entry Sequence)
+       AUTHENTIC FULLSCREEN NETFLIX-STYLE CINEMATIC INTRO
+       (Signature Red Arc Monogram & Spectral Laser Zoom)
        ======================================================== */
-    .movie-hero-intro {
+    .netflix-intro-overlay {
       position: fixed;
       inset: 0;
-      background: #020306;
+      background: #000000;
       z-index: 10000;
       display: flex;
       flex-direction: column;
@@ -504,217 +504,293 @@
       overflow: hidden;
       opacity: 1;
       visibility: visible;
-      transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), 
-                  transform 0.95s cubic-bezier(0.16, 1, 0.3, 1), 
-                  visibility 0.95s;
+      perspective: 900px;
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
+                  visibility 0.85s;
     }
 
-    .movie-hero-intro.dismissed {
+    .netflix-intro-overlay.dismissed {
       opacity: 0;
-      transform: scale(1.08);
+      transform: scale(1.15);
       visibility: hidden;
       pointer-events: none;
     }
 
-    /* Ambient Spotlight & Anamorphic Beam */
-    .movie-spotlight {
+    /* Ambient Netflix Red Spotlight */
+    .netflix-ambient-glow {
       position: absolute;
-      width: 750px;
-      height: 750px;
+      width: 700px;
+      height: 700px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 204, 0, 0.18) 0%, rgba(255, 170, 0, 0.06) 45%, transparent 70%);
+      background: radial-gradient(circle, rgba(229, 9, 20, 0.28) 0%, rgba(184, 29, 36, 0.12) 40%, transparent 70%);
       pointer-events: none;
-      filter: blur(45px);
-      animation: spotlightPulse 3.5s infinite alternate ease-in-out;
+      filter: blur(50px);
+      animation: netflixGlowPulse 2.8s infinite alternate ease-in-out;
+      z-index: 1;
     }
 
-    @keyframes spotlightPulse {
-      0% { transform: scale(0.85); opacity: 0.5; }
-      100% { transform: scale(1.2); opacity: 0.95; }
+    @keyframes netflixGlowPulse {
+      0% { transform: scale(0.85); opacity: 0.6; }
+      100% { transform: scale(1.25); opacity: 1; }
     }
 
-    .movie-anamorphic-streak {
+    /* Central Netflix Typography Stage */
+    .netflix-stage {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: netflixStageFlow 3.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      transform-style: preserve-3d;
+    }
+
+    @keyframes netflixStageFlow {
+      0% {
+        opacity: 0;
+        transform: scale(0.82) translateZ(-60px);
+      }
+      20% {
+        opacity: 1;
+        transform: scale(1) translateZ(0px);
+      }
+      70% {
+        opacity: 1;
+        transform: scale(1.08) translateZ(40px);
+        filter: blur(0px);
+      }
+      85% {
+        opacity: 0.2;
+        transform: scale(1.35) translateZ(120px);
+        filter: blur(8px);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.6) translateZ(200px);
+        filter: blur(16px);
+      }
+    }
+
+    /* "A GULSHAN KUMAR ORIGINAL" Top Tag */
+    .netflix-origin-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(10px, 1.3vw, 13px);
+      font-weight: 700;
+      letter-spacing: clamp(5px, 1.2vw, 10px);
+      color: rgba(255, 255, 255, 0.7);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: netflixFadeIn 0.8s ease-out 0.2s forwards;
+    }
+
+    /* Netflix Arched Curved Title Wrapper */
+    .netflix-arc-wrap {
+      position: relative;
+      margin-bottom: 18px;
+    }
+
+    .netflix-arc-title {
+      font-family: 'Bebas Neue', 'Cabinet Grotesk', 'Impact', sans-serif;
+      font-size: clamp(54px, 14vw, 145px);
+      font-weight: 900;
+      letter-spacing: clamp(4px, 1.2vw, 16px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      line-height: 0.9;
+    }
+
+    .n-char {
+      display: inline-block;
+      background: linear-gradient(180deg, #ff2e38 0%, #E50914 45%, #b20710 85%, #6a0006 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transform: translateY(var(--ty, 0px)) rotate(var(--r, 0deg));
+      transform-origin: center bottom;
+      filter: drop-shadow(0 0 28px rgba(229, 9, 20, 0.85)) drop-shadow(0 14px 35px rgba(0, 0, 0, 0.95));
+      transition: transform 0.3s ease;
+    }
+
+    /* Secondary Netflix Subtitle */
+    .netflix-sub-tag {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: clamp(12px, 1.8vw, 18px);
+      font-weight: 800;
+      letter-spacing: clamp(4px, 0.9vw, 8px);
+      color: #ffffff;
+      text-transform: uppercase;
+      opacity: 0;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+      animation: netflixFadeIn 0.8s ease-out 0.5s forwards;
+    }
+
+    @keyframes netflixFadeIn {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========================================================
+       SIGNATURE NETFLIX SPECTRUM LASER RIBBONS
+       (Multi-colored Vertical Light Beams Zooming into Camera)
+       ======================================================== */
+    .netflix-spectrum-container {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      perspective: 750px;
+      transform-style: preserve-3d;
+      opacity: 0;
+      animation: netflixSpectrumExplosion 2.5s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+    }
+
+    @keyframes netflixSpectrumExplosion {
+      0% {
+        opacity: 0;
+        transform: scale(0.6) translateZ(-150px);
+      }
+      25% {
+        opacity: 1;
+        transform: scale(1.05) translateZ(0px);
+      }
+      70% {
+        opacity: 1;
+        transform: scale(1.6) translateZ(180px);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(2.8) translateZ(400px);
+        filter: blur(12px);
+      }
+    }
+
+    .netflix-ribbon {
+      position: absolute;
+      top: -20vh;
+      bottom: -20vh;
+      left: calc(50% + var(--x, 0vw));
+      width: var(--w, 4px);
+      background: linear-gradient(180deg, 
+        transparent 0%, 
+        var(--color, #E50914) 25%, 
+        #ffffff 50%, 
+        var(--color, #E50914) 75%, 
+        transparent 100%
+      );
+      box-shadow: 0 0 25px var(--color, #E50914), 0 0 50px var(--color, #E50914);
+      opacity: 0.85;
+      transform-origin: center;
+      animation: ribbonPulse var(--dur, 1.4s) ease-in-out var(--del, 0s) infinite alternate;
+    }
+
+    @keyframes ribbonPulse {
+      0% {
+        transform: scaleY(0.85) scaleX(0.9);
+        opacity: 0.7;
+      }
+      100% {
+        transform: scaleY(1.15) scaleX(1.3);
+        opacity: 1;
+      }
+    }
+
+    /* Horizontal Anamorphic Lens Flare */
+    .netflix-lens-sweep {
       position: absolute;
       top: 50%;
       left: -10%;
       width: 120%;
-      height: 3px;
-      background: linear-gradient(90deg, transparent 0%, rgba(0, 200, 255, 0.8) 25%, #ffcc00 50%, rgba(0, 200, 255, 0.8) 75%, transparent 100%);
-      box-shadow: 0 0 35px #ffcc00, 0 0 80px rgba(0, 200, 255, 0.9);
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(229, 9, 20, 0.9) 30%, #ffffff 50%, rgba(0, 240, 255, 0.9) 70%, transparent 100%);
+      box-shadow: 0 0 35px #E50914, 0 0 70px #00F0FF;
       transform: translateY(-50%) scaleX(0);
-      animation: movieFlareSweep 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
       pointer-events: none;
-      z-index: 1;
+      z-index: 7;
+      animation: netflixFlareSweep 1.8s cubic-bezier(0.16, 1, 0.3, 1) 1.25s forwards;
     }
 
-    @keyframes movieFlareSweep {
+    @keyframes netflixFlareSweep {
       0% { transform: translateY(-50%) scaleX(0); opacity: 0; }
       40% { transform: translateY(-50%) scaleX(1.1); opacity: 1; }
-      100% { transform: translateY(-50%) scaleX(1); opacity: 0.35; }
+      100% { transform: translateY(-50%) scaleX(1.3); opacity: 0; }
     }
 
-    /* Hero Name Card Container */
-    .movie-card-center {
-      position: relative;
-      z-index: 5;
-      text-align: center;
-      max-width: 950px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* Phase 1: Presents Tag */
-    .movie-present-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: clamp(11px, 1.4vw, 13.5px);
-      font-weight: 700;
-      letter-spacing: 8px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.65);
-      margin-bottom: 22px;
+    /* White Flash Climax */
+    .netflix-flash-burst {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(229, 9, 20, 0.4) 50%, transparent 80%);
       opacity: 0;
-      animation: movieLeadIn 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+      pointer-events: none;
+      z-index: 8;
+      animation: netflixFlash 1s ease-out 3.2s forwards;
     }
 
-    @keyframes movieLeadIn {
-      0% { opacity: 0; letter-spacing: 3px; transform: translateY(-12px); }
-      100% { opacity: 1; letter-spacing: 8px; transform: translateY(0); }
+    @keyframes netflixFlash {
+      0% { opacity: 0; }
+      30% { opacity: 0.85; }
+      100% { opacity: 0; }
     }
 
-    /* Phase 2: Massive Blockbuster Hero Name Slam */
-    .movie-hero-title-box {
-      position: relative;
-      overflow: visible;
-      margin-bottom: 20px;
-    }
-
-    .movie-hero-title {
-      font-family: 'Cabinet Grotesk', 'Impact', sans-serif;
-      font-size: clamp(48px, 11.5vw, 125px);
-      font-weight: 900;
-      text-transform: uppercase;
-      line-height: 0.88;
-      letter-spacing: clamp(6px, 1.8vw, 22px);
-      margin: 0;
-      background: linear-gradient(180deg, #ffffff 0%, #fff0a6 38%, #ffcc00 70%, #d48800 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 35px rgba(255, 204, 0, 0.75)) drop-shadow(0 8px 30px rgba(0, 0, 0, 0.9));
-      opacity: 0;
-      transform: scale(1.35);
-      animation: movieHeroSlam 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
-    }
-
-    @keyframes movieHeroSlam {
-      0% {
-        opacity: 0;
-        transform: scale(1.35);
-        filter: blur(14px) drop-shadow(0 0 50px rgba(255,204,0,1));
-      }
-      35% {
-        opacity: 1;
-        transform: scale(0.98);
-        filter: blur(0px) drop-shadow(0 0 40px rgba(255,204,0,0.85));
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1.02);
-        filter: blur(0px) drop-shadow(0 0 30px rgba(255,204,0,0.6));
-      }
-    }
-
-    /* Phase 3: Golden Divider & Hero Subtitle */
-    .movie-divider-wrap {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      width: 100%;
-      max-width: 520px;
-      margin-bottom: 16px;
-      opacity: 0;
-      animation: movieFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.4s forwards;
-    }
-
-    .movie-line {
-      flex: 1;
-      height: 1.5px;
-      background: linear-gradient(90deg, transparent 0%, #ffcc00 50%, transparent 100%);
-      box-shadow: 0 0 8px #ffcc00;
-    }
-
-    .movie-star {
-      color: #ffcc00;
-      font-size: 13px;
-      text-shadow: 0 0 10px #ffcc00;
-    }
-
-    .movie-hero-role {
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: clamp(14px, 2.2vw, 24px);
-      font-weight: 900;
-      letter-spacing: clamp(4px, 1.1vw, 9px);
-      text-transform: uppercase;
-      color: #ffffff;
-      margin-bottom: 10px;
-      opacity: 0;
-      text-shadow: 0 0 20px rgba(255, 255, 255, 0.85);
-      animation: movieFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.65s forwards;
-    }
-
-    .movie-hero-subtag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: clamp(10px, 1.2vw, 12.5px);
-      letter-spacing: 2.8px;
-      color: rgba(255, 204, 0, 0.92);
-      text-transform: uppercase;
-      opacity: 0;
-      text-shadow: 0 0 10px rgba(255, 204, 0, 0.4);
-      animation: movieFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.9s forwards;
-    }
-
-    @keyframes movieFadeIn {
-      0% { opacity: 0; transform: translateY(12px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Minimal Movie Skip / Enter Button */
-    .movie-skip-btn {
+    /* Footer Controls (Skip & Sound) */
+    .netflix-footer-controls {
       position: absolute;
       bottom: 36px;
       right: 48px;
-      z-index: 10;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: rgba(255, 255, 255, 0.8);
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .netflix-sound-toggle,
+    .netflix-skip-btn {
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: rgba(255, 255, 255, 0.9);
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
-      padding: 9px 20px;
+      padding: 9px 18px;
       border-radius: 4px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       transition: all 0.25s ease;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
     }
 
-    .movie-skip-btn:hover {
-      color: #000;
-      background: var(--primary-yellow);
-      border-color: var(--primary-yellow);
-      box-shadow: 0 0 20px var(--primary-yellow);
+    .netflix-sound-toggle:hover,
+    .netflix-skip-btn:hover {
+      background: #E50914;
+      border-color: #E50914;
+      color: #ffffff;
+      box-shadow: 0 0 25px rgba(229, 9, 20, 0.7);
     }
 
     @media (max-width: 768px) {
-      .movie-skip-btn {
+      .netflix-footer-controls {
         bottom: 24px;
         right: 20px;
-        font-size: 10px;
-        padding: 7px 15px;
+        gap: 8px;
+      }
+      .netflix-sound-toggle,
+      .netflix-skip-btn {
+        font-size: 9.5px;
+        padding: 7px 13px;
       }
     }
 
@@ -835,27 +911,76 @@
 </head>
 <body>
 
-  <!-- Blockbuster Movie Hero Title Card Intro -->
-  <div class="movie-hero-intro" id="movie-hero-intro">
-    <div class="movie-spotlight"></div>
-    <div class="movie-anamorphic-streak"></div>
-    <div class="movie-card-center">
-      <div class="movie-present-tag">A PRODUCTION ARCHITECTED BY</div>
-      <div class="movie-hero-title-box">
-        <h1 class="movie-hero-title">GULSHAN KUMAR</h1>
+  <!-- Fullscreen Netflix-Style Intro Overlay -->
+  <div class="netflix-intro-overlay" id="netflix-intro-overlay">
+    <!-- Ambient Netflix Red Spotlight -->
+    <div class="netflix-ambient-glow"></div>
+
+    <!-- Center Netflix Typography Stage -->
+    <div class="netflix-stage" id="netflix-stage">
+      <div class="netflix-origin-tag">A GULSHAN KUMAR ORIGINAL</div>
+      
+      <!-- Netflix Arched Curved Title for GULSHAN -->
+      <div class="netflix-arc-wrap">
+        <div class="netflix-arc-title" id="netflix-arc-title">
+          <span class="n-char" style="--r:-9deg; --ty:7px;">G</span>
+          <span class="n-char" style="--r:-6deg; --ty:3px;">U</span>
+          <span class="n-char" style="--r:-3deg; --ty:0px;">L</span>
+          <span class="n-char" style="--r:0deg; --ty:-3px;">S</span>
+          <span class="n-char" style="--r:3deg; --ty:0px;">H</span>
+          <span class="n-char" style="--r:6deg; --ty:3px;">A</span>
+          <span class="n-char" style="--r:9deg; --ty:7px;">N</span>
+        </div>
       </div>
-      <div class="movie-divider-wrap">
-        <span class="movie-line"></span>
-        <span class="movie-star">✦</span>
-        <span class="movie-line"></span>
-      </div>
-      <div class="movie-hero-role">THE BACKEND ARCHITECT</div>
-      <div class="movie-hero-subtag">AI-NATIVE PLATFORMS • HIGH CONCURRENCY • ENTERPRISE ENGINES</div>
+
+      <div class="netflix-sub-tag">THE BACKEND ARCHITECT &bull; SYSTEM SPECIALIST</div>
     </div>
-    <button class="movie-skip-btn" onclick="dismissIntro()">
-      <span>ENTER SITE</span>
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2.5"></line></svg>
-    </button>
+
+    <!-- The Signature Netflix Spectrum Laser Ribbons (Ta-Dum explosion) -->
+    <div class="netflix-spectrum-container" id="netflix-spectrum-container">
+      <div class="netflix-ribbon" style="--color:#E50914; --x:-46vw; --w:5px; --dur:1.4s; --del:0.02s;"></div>
+      <div class="netflix-ribbon" style="--color:#FF2A6D; --x:-41vw; --w:3px; --dur:1.3s; --del:0.08s;"></div>
+      <div class="netflix-ribbon" style="--color:#9D00FF; --x:-37vw; --w:6px; --dur:1.5s; --del:0.12s;"></div>
+      <div class="netflix-ribbon" style="--color:#00F0FF; --x:-32vw; --w:4px; --dur:1.2s; --del:0.05s;"></div>
+      <div class="netflix-ribbon" style="--color:#0051FF; --x:-28vw; --w:7px; --dur:1.6s; --del:0.15s;"></div>
+      <div class="netflix-ribbon" style="--color:#E50914; --x:-23vw; --w:5px; --dur:1.4s; --del:0.03s;"></div>
+      <div class="netflix-ribbon" style="--color:#FF5E00; --x:-19vw; --w:6px; --dur:1.3s; --del:0.1s;"></div>
+      <div class="netflix-ribbon" style="--color:#FFE600; --x:-15vw; --w:3px; --dur:1.2s; --del:0.18s;"></div>
+      <div class="netflix-ribbon" style="--color:#05FFA1; --x:-11vw; --w:4px; --dur:1.5s; --del:0.07s;"></div>
+      <div class="netflix-ribbon" style="--color:#FF2A6D; --x:-7vw;  --w:6px; --dur:1.3s; --del:0.14s;"></div>
+      <div class="netflix-ribbon" style="--color:#E50914; --x:-3vw;  --w:8px; --dur:1.6s; --del:0.01s;"></div>
+      <div class="netflix-ribbon" style="--color:#FFFFFF; --x:0vw;   --w:7px; --dur:1.7s; --del:0.0s;"></div>
+      <div class="netflix-ribbon" style="--color:#E50914; --x:3vw;   --w:8px; --dur:1.6s; --del:0.02s;"></div>
+      <div class="netflix-ribbon" style="--color:#FF2A6D; --x:7vw;   --w:5px; --dur:1.3s; --del:0.09s;"></div>
+      <div class="netflix-ribbon" style="--color:#9D00FF; --x:11vw;  --w:6px; --dur:1.5s; --del:0.13s;"></div>
+      <div class="netflix-ribbon" style="--color:#00F0FF; --x:15vw;  --w:4px; --dur:1.2s; --del:0.06s;"></div>
+      <div class="netflix-ribbon" style="--color:#05FFA1; --x:19vw;  --w:5px; --dur:1.4s; --del:0.17s;"></div>
+      <div class="netflix-ribbon" style="--color:#FFE600; --x:23vw;  --w:6px; --dur:1.3s; --del:0.11s;"></div>
+      <div class="netflix-ribbon" style="--color:#FF5E00; --x:28vw;  --w:4px; --dur:1.5s; --del:0.04s;"></div>
+      <div class="netflix-ribbon" style="--color:#E50914; --x:32vw;  --w:7px; --dur:1.4s; --del:0.08s;"></div>
+      <div class="netflix-ribbon" style="--color:#0051FF; --x:37vw;  --w:5px; --dur:1.6s; --del:0.16s;"></div>
+      <div class="netflix-ribbon" style="--color:#9D00FF; --x:41vw;  --w:4px; --dur:1.3s; --del:0.1s;"></div>
+      <div class="netflix-ribbon" style="--color:#FF2A6D; --x:46vw;  --w:6px; --dur:1.5s; --del:0.19s;"></div>
+    </div>
+
+    <!-- Horizontal Lens Sweep & Climax Flash -->
+    <div class="netflix-lens-sweep"></div>
+    <div class="netflix-flash-burst"></div>
+
+    <!-- Netflix Footer Controls -->
+    <div class="netflix-footer-controls">
+      <button class="netflix-sound-toggle" id="netflix-sound-toggle" onclick="toggleIntroSound()" title="Sound On / Off">
+        <span id="sound-icon">🔊</span>
+        <span id="sound-text">TA-DUM: ON</span>
+      </button>
+      <button class="netflix-skip-btn" onclick="dismissIntro()">
+        <span>SKIP INTRO</span>
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+          <polygon points="5 4 15 12 5 20 5 4"></polygon>
+          <line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2.5"></line>
+        </svg>
+      </button>
+    </div>
   </div>
 
   <!-- Background Video Frame Scroll Canvas -->
@@ -873,8 +998,8 @@
     <header class="nav-bar">
       <div class="nav-brand-group">
         <a class="nav-brand" href="#">Home</a>
-        <button class="nav-intro-trigger" onclick="playPromoIntro()" title="Play Promo Intro">
-          <span>↺ INTRO</span>
+        <button class="nav-intro-trigger" onclick="playPromoIntro()" title="Play Netflix Intro">
+          <span>↺ NETFLIX INTRO</span>
         </button>
       </div>
 
@@ -1342,23 +1467,98 @@
       }
 
       // ========================================================
-      // BLOCKBUSTER MOVIE HERO INTRO CONTROLS
+      // AUTHENTIC NETFLIX-STYLE INTRO CONTROLS & "TA-DUM" SOUND
       // ========================================================
-      const introOverlay = document.getElementById('movie-hero-intro');
+      const introOverlay = document.getElementById('netflix-intro-overlay');
       let introTimer = null;
+      let soundTimer = null;
+      let isIntroSoundEnabled = true;
+
+      // Pure Web Audio API Synthesizer for Authentic "Ta-Dum" Sound
+      function playTaDumSound() {
+        if (!isIntroSoundEnabled) return;
+        try {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (!AudioContextClass) return;
+          const ctx = new AudioContextClass();
+          if (ctx.state === 'suspended') {
+            ctx.resume();
+          }
+          const t0 = ctx.currentTime;
+
+          // 1. First "Ta" hit (sub-bass punch at t0)
+          const osc1 = ctx.createOscillator();
+          const gain1 = ctx.createGain();
+          osc1.type = 'triangle';
+          osc1.frequency.setValueAtTime(80, t0);
+          osc1.frequency.exponentialRampToValueAtTime(42, t0 + 0.28);
+          gain1.gain.setValueAtTime(0.75, t0);
+          gain1.gain.exponentialRampToValueAtTime(0.01, t0 + 0.3);
+          osc1.connect(gain1);
+          gain1.connect(ctx.destination);
+          osc1.start(t0);
+          osc1.stop(t0 + 0.32);
+
+          // 2. Second "DUM" hit (resonant cinematic bass + sustained shimmer at t0 + 0.22s)
+          const osc2 = ctx.createOscillator();
+          const osc3 = ctx.createOscillator();
+          const gain2 = ctx.createGain();
+          const filter = ctx.createBiquadFilter();
+
+          osc2.type = 'sawtooth';
+          osc2.frequency.setValueAtTime(65, t0 + 0.22);
+          osc2.frequency.exponentialRampToValueAtTime(32, t0 + 2.5);
+
+          osc3.type = 'sine';
+          osc3.frequency.setValueAtTime(130, t0 + 0.22);
+          osc3.frequency.exponentialRampToValueAtTime(65, t0 + 2.2);
+
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(950, t0 + 0.22);
+          filter.frequency.exponentialRampToValueAtTime(140, t0 + 2.2);
+
+          gain2.gain.setValueAtTime(0.001, t0);
+          gain2.gain.setValueAtTime(0.85, t0 + 0.22);
+          gain2.gain.exponentialRampToValueAtTime(0.001, t0 + 2.6);
+
+          osc2.connect(filter);
+          osc3.connect(filter);
+          filter.connect(gain2);
+          gain2.connect(ctx.destination);
+
+          osc2.start(t0 + 0.22);
+          osc3.start(t0 + 0.22);
+          osc2.stop(t0 + 2.7);
+          osc3.stop(t0 + 2.7);
+        } catch (err) {
+          // Graceful fallback if audio is blocked
+        }
+      }
+
+      window.toggleIntroSound = function() {
+        isIntroSoundEnabled = !isIntroSoundEnabled;
+        const soundIcon = document.getElementById('sound-icon');
+        const soundText = document.getElementById('sound-text');
+        if (isIntroSoundEnabled) {
+          if (soundIcon) soundIcon.textContent = '🔊';
+          if (soundText) soundText.textContent = 'TA-DUM: ON';
+          playTaDumSound();
+        } else {
+          if (soundIcon) soundIcon.textContent = '🔇';
+          if (soundText) soundText.textContent = 'MUTED';
+        }
+      };
 
       function startIntroAnimation() {
         if (!introOverlay) return;
         introOverlay.classList.remove('dismissed');
 
         // Restart CSS keyframe animations cleanly if retriggered
-        const title = introOverlay.querySelector('.movie-hero-title');
-        const tag = introOverlay.querySelector('.movie-present-tag');
-        const divider = introOverlay.querySelector('.movie-divider-wrap');
-        const role = introOverlay.querySelector('.movie-hero-role');
-        const subtag = introOverlay.querySelector('.movie-hero-subtag');
-        const streak = introOverlay.querySelector('.movie-anamorphic-streak');
-        [title, tag, divider, role, subtag, streak].forEach(el => {
+        const stage = introOverlay.querySelector('.netflix-stage');
+        const spectrum = introOverlay.querySelector('.netflix-spectrum-container');
+        const sweep = introOverlay.querySelector('.netflix-lens-sweep');
+        const burst = introOverlay.querySelector('.netflix-flash-burst');
+        [stage, spectrum, sweep, burst].forEach(el => {
           if (el) {
             el.style.animation = 'none';
             void el.offsetWidth; // trigger reflow
@@ -1366,11 +1566,17 @@
           }
         });
 
+        // Trigger Ta-Dum sound when spectrum ribbons explode (~1.1s)
+        clearTimeout(soundTimer);
+        soundTimer = setTimeout(() => {
+          playTaDumSound();
+        }, 1100);
+
+        // Climax zoom completes, then seamlessly dissolves into portfolio site
         clearTimeout(introTimer);
-        // Hero name sequence finishes, then seamlessly dissolves into portfolio site
         introTimer = setTimeout(() => {
           dismissIntro();
-        }, 3800);
+        }, 3850);
       }
 
       window.dismissIntro = function() {
@@ -1378,13 +1584,21 @@
           introOverlay.classList.add('dismissed');
         }
         clearTimeout(introTimer);
+        clearTimeout(soundTimer);
       };
 
       window.playPromoIntro = function() {
         startIntroAnimation();
       };
 
-      // Launch blockbuster hero intro on initial page load
+      // Play Ta-Dum on user's first interaction if blocked by autoplay policy
+      const enableAudioOnFirstClick = () => {
+        if (isIntroSoundEnabled) playTaDumSound();
+        window.removeEventListener('pointerdown', enableAudioOnFirstClick);
+      };
+      window.addEventListener('pointerdown', enableAudioOnFirstClick, { once: true });
+
+      // Launch Netflix-style intro on initial page load
       startIntroAnimation();
     })();
   </script>
