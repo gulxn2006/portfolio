@@ -842,12 +842,12 @@
     @media (max-width: 768px) {
       /* Mobile Viewport Sizing & Vignette */
       .ui-overlay {
-        padding: 16px;
+        padding: 12px;
       }
 
-      /* Darker center vignette for high contrast against zoomed video animation */
+      /* Luminous softened vignette: reveals zoomed underlying video with maximum clarity */
       .vignette {
-        background: radial-gradient(circle at 50% 45%, rgba(15, 16, 23, 0.25) 0%, rgba(15, 16, 23, 0.88) 80%);
+        background: radial-gradient(circle at 50% 45%, rgba(15, 16, 23, 0.04) 0%, rgba(15, 16, 23, 0.62) 85%);
       }
 
       /* Hide side indicator on mobile */
@@ -860,19 +860,24 @@
         display: inline-flex;
         align-items: center;
         gap: 6px;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid var(--primary-yellow);
+        padding: 3px 8px;
+        border-radius: 6px;
+        box-shadow: 0 0 10px var(--primary-yellow-glow);
       }
 
-      /* Sleek Frosted Glass Mobile Navigation */
+      /* Sleek Transparent Frosted Glass Mobile Navigation */
       .nav-bar {
         flex-wrap: wrap;
-        gap: 8px;
-        background: rgba(15, 17, 26, 0.88);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        padding: 10px 14px;
+        gap: 6px;
+        background: rgba(15, 17, 26, 0.4);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        padding: 8px 12px;
         border-radius: 10px;
-        border: 1px solid rgba(255, 204, 0, 0.25);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 204, 0, 0.1);
+        border: 1px solid rgba(255, 204, 0, 0.3);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 204, 0, 0.12);
       }
 
       .brand-box {
@@ -882,7 +887,7 @@
       }
 
       .brand-name {
-        font-size: 12.5px;
+        font-size: 12px;
         letter-spacing: 1px;
       }
 
@@ -896,21 +901,23 @@
 
       .nav-links {
         width: 100%;
-        gap: 8px;
-        font-size: 10.5px;
-        letter-spacing: 1.5px;
+        gap: 6px;
+        font-size: 10px;
+        letter-spacing: 1.2px;
         justify-content: space-between;
-        padding-top: 8px;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 6px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       .nav-links a {
-        padding: 4px 6px;
+        padding: 3px 6px;
         border-radius: 4px;
       }
 
       .nav-links a.active {
-        background: rgba(255, 204, 0, 0.15);
+        background: rgba(255, 204, 0, 0.2);
+        color: var(--primary-yellow);
+        text-shadow: 0 0 10px var(--primary-yellow);
       }
 
       .nav-links a.active::after {
@@ -919,76 +926,106 @@
 
       /* Mobile Section Stage Positioning */
       .section-stage {
-        left: 14px;
-        right: 14px;
-        top: 98px;
-        bottom: 14px;
+        left: 12px;
+        right: 12px;
+        top: 92px;
+        bottom: 12px;
         align-items: flex-end;
         justify-content: center;
       }
 
+      /* 100% Transparent Hero Container: lets the underlying video shine directly through! */
       .hero-main {
         max-width: 100%;
         margin-bottom: 0;
         width: 100%;
-        background: linear-gradient(180deg, rgba(15, 17, 26, 0.7) 0%, rgba(12, 14, 22, 0.94) 100%);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        border: 1px solid rgba(255, 204, 0, 0.25);
-        border-radius: 12px;
-        padding: 18px 16px 16px 16px;
-        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 204, 0, 0.15);
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
       }
 
       .hero-badge {
-        font-size: 13px;
+        font-size: 12px;
         letter-spacing: 2px;
         margin-bottom: 2px;
         color: var(--primary-yellow);
+        text-shadow: 0 2px 10px rgba(0,0,0,0.95), 0 0 12px var(--primary-yellow-glow);
       }
 
       .hero-title-solid {
-        font-size: clamp(38px, 11vw, 54px);
-        line-height: 0.92;
+        font-size: clamp(36px, 10.5vw, 52px);
+        line-height: 0.9;
+        text-shadow: 0 4px 18px rgba(0,0,0,0.95), 0 0 24px var(--primary-yellow-glow);
       }
 
       .hero-title-stroke {
-        font-size: clamp(38px, 11vw, 54px);
-        line-height: 0.92;
+        font-size: clamp(36px, 10.5vw, 52px);
+        line-height: 0.9;
         -webkit-text-stroke: 1.8px var(--primary-yellow);
-        margin-bottom: 10px;
+        margin-bottom: 8px;
+        filter: drop-shadow(0 4px 14px rgba(0,0,0,0.95)) drop-shadow(0 0 10px var(--primary-yellow-glow));
       }
 
       .hero-submeta {
-        font-size: 11px;
-        margin-bottom: 12px;
+        font-size: 10px;
+        margin-bottom: 10px;
         line-height: 1.35;
+        background: rgba(0, 0, 0, 0.4);
+        padding: 5px 9px;
+        border-radius: 5px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        width: fit-content;
+        max-width: 100%;
+        text-shadow: 0 2px 6px rgba(0,0,0,0.95);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
       }
 
       .hero-actions {
-        gap: 10px;
-        margin-top: 10px;
+        gap: 8px;
+        margin-top: 8px;
       }
 
       .btn-action-primary {
-        padding: 10px 18px;
-        font-size: 11.5px;
+        padding: 10px 16px;
+        font-size: 11px;
         letter-spacing: 1.2px;
         flex: 1;
         justify-content: center;
+        background: rgba(15, 16, 23, 0.5);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 2px solid var(--primary-yellow);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), 0 0 12px rgba(255, 204, 0, 0.25);
       }
 
       .btn-action-icon {
-        width: 40px;
-        height: 40px;
+        width: 38px;
+        height: 38px;
+        background: rgba(15, 16, 23, 0.5);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
       }
 
-      /* Show mobile floating tech badge */
+      /* Holographic Transparent Mobile Tech Telemetry Badge */
       .mobile-tech-badge {
         display: block;
+        margin-top: 10px;
+        padding: 9px 12px;
+        background: transparent !important;
+        border: 1px solid rgba(255, 204, 0, 0.38);
+        border-radius: 8px;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        box-shadow: inset 0 0 14px rgba(255, 204, 0, 0.06), 0 0 16px rgba(255, 204, 0, 0.15);
       }
 
-      /* Mobile 2-Column High-Tech Skills Grid */
+      /* Mobile 2-Column Transparent Holographic Skills Grid */
       .skills-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
@@ -996,22 +1033,34 @@
         max-width: 100%;
       }
 
+      /* Pure Transparent Skill Cards */
       .skill-card {
         padding: 8px 10px;
-        border-radius: 7px;
-        background: rgba(18, 22, 36, 0.9);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        border-radius: 8px;
+        background: transparent !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        box-shadow: inset 0 0 14px rgba(255, 204, 0, 0.04), 0 4px 14px rgba(0, 0, 0, 0.4) !important;
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+
+      .skill-card:active {
+        transform: scale(0.97);
+        border-color: var(--tech-color, var(--primary-yellow)) !important;
+        box-shadow: inset 0 0 18px var(--tech-glow, rgba(255, 204, 0, 0.2)), 0 0 15px var(--tech-color, var(--primary-yellow)) !important;
       }
 
       .skill-card-top {
-        margin-bottom: 4px;
+        margin-bottom: 5px;
       }
 
       .skill-icon-box {
-        width: 28px;
-        height: 28px;
-        border-radius: 5px;
+        width: 30px;
+        height: 30px;
+        border-radius: 6px;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.2);
       }
 
       .skill-icon-box svg {
@@ -1021,24 +1070,31 @@
 
       .skill-pct {
         font-size: 8.5px;
-        padding: 1px 4px;
+        padding: 1px 5px;
+        background: rgba(0, 0, 0, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        text-shadow: 0 0 8px currentColor;
       }
 
       .skill-card-name {
-        font-size: 11.5px;
-        margin-bottom: 1px;
+        font-size: 12px;
+        margin-bottom: 2px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
       }
 
       .skill-card-sub {
-        font-size: 8px;
-        margin-bottom: 4px;
+        font-size: 8.5px;
+        color: rgba(255, 255, 255, 0.82);
+        margin-bottom: 5px;
+        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.95);
       }
 
       .skill-meter-bg {
-        height: 2.5px;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.2);
       }
 
-      /* Mobile Contact Items */
+      /* Mobile Contact Items Transparent Styling */
       .contact-card-list {
         gap: 8px;
         margin-top: 10px;
@@ -1046,14 +1102,20 @@
       }
 
       .contact-item {
-        padding: 10px 14px;
-        gap: 10px;
+        padding: 11px 14px;
+        gap: 12px;
         border-radius: 8px;
+        background: transparent !important;
+        border: 1px solid rgba(255, 204, 0, 0.35);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        box-shadow: inset 0 0 12px rgba(255, 204, 0, 0.05), 0 4px 14px rgba(0, 0, 0, 0.4);
       }
 
       .contact-val {
-        font-size: 12.5px;
+        font-size: 12px;
         word-break: break-all;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
       }
 
       .scroll-hint {
@@ -1731,8 +1793,8 @@
         const mobile = window.innerWidth < 768;
 
         if (mobile) {
-          // CINEMATIC FULL-SCREEN COVER + 1.18x ZOOM ON MOBILE (NO LETTERBOXING)
-          const zoom = 1.18;
+          // CINEMATIC FULL-SCREEN COVER + 1.22x ZOOM ON MOBILE (NO LETTERBOXING)
+          const zoom = 1.22;
           if (canvasRatio > imgRatio) {
             drawW = cw * zoom;
             drawH = (cw / imgRatio) * zoom;
@@ -1802,7 +1864,7 @@
         targetProgress = maxScroll > 0 ? currentScroll / maxScroll : 0;
         targetProgress = Math.max(0, Math.min(1, targetProgress));
 
-        const lerpSpeed = isMobile ? 0.16 : 0.12;
+        const lerpSpeed = isMobile ? 0.22 : 0.12;
         currentProgress += (targetProgress - currentProgress) * lerpSpeed;
 
         if (Math.abs(targetProgress - currentProgress) < 0.0001) {
@@ -1842,7 +1904,8 @@
       });
 
       // ========================================================
-      // HIGH PERFORMANCE TOUCH & DRAG SCRUBBING
+      // HIGH PERFORMANCE DESKTOP DRAG SCRUBBING
+      // Mobile uses native hardware-accelerated touch momentum
       // ========================================================
       let isDragging = false;
       let startY = 0;
@@ -1872,29 +1935,6 @@
       window.addEventListener('mouseup', () => {
         isDragging = false;
       });
-
-      // Touch Scrub (Mobile & Tablets)
-      window.addEventListener('touchstart', (e) => {
-        if (e.target.closest('a') || e.target.closest('button') || e.target.closest('.skill-card')) {
-          return;
-        }
-        isDragging = true;
-        startY = e.touches[0].clientY;
-        startScroll = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
-      }, { passive: true });
-
-      window.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        const deltaY = e.touches[0].clientY - startY;
-        const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-        const maxScroll = scrollHeight - window.innerHeight;
-        const nextScroll = Math.max(0, Math.min(maxScroll, startScroll - deltaY * 2.2));
-        window.scrollTo(0, nextScroll);
-      }, { passive: true });
-
-      window.addEventListener('touchend', () => {
-        isDragging = false;
-      }, { passive: true });
     })();
   </script>
 </body>
