@@ -488,185 +488,234 @@
     }
 
     /* ========================================================
-       CINEMATIC PROMO INTRO OVERLAY
+       BLOCKBUSTER MOVIE HERO TITLE CARD INTRO
+       (Epic Action / Cinema Hero Entry Sequence)
        ======================================================== */
-    .cinema-intro-overlay {
+    .movie-hero-intro {
       position: fixed;
       inset: 0;
-      background: rgba(8, 10, 15, 0.92);
-      backdrop-filter: blur(28px);
-      -webkit-backdrop-filter: blur(28px);
-      z-index: 1000;
+      background: #020306;
+      z-index: 10000;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 24px;
+      overflow: hidden;
       opacity: 1;
       visibility: visible;
-      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.75s;
-      overflow: hidden;
+      transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.95s cubic-bezier(0.16, 1, 0.3, 1), 
+                  visibility 0.95s;
     }
 
-    .cinema-intro-overlay.dismissed {
+    .movie-hero-intro.dismissed {
       opacity: 0;
+      transform: scale(1.08);
       visibility: hidden;
       pointer-events: none;
     }
 
-    /* Anamorphic Lens Flare Streak */
-    .anamorphic-flare {
+    /* Ambient Spotlight & Anamorphic Beam */
+    .movie-spotlight {
+      position: absolute;
+      width: 750px;
+      height: 750px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 204, 0, 0.18) 0%, rgba(255, 170, 0, 0.06) 45%, transparent 70%);
+      pointer-events: none;
+      filter: blur(45px);
+      animation: spotlightPulse 3.5s infinite alternate ease-in-out;
+    }
+
+    @keyframes spotlightPulse {
+      0% { transform: scale(0.85); opacity: 0.5; }
+      100% { transform: scale(1.2); opacity: 0.95; }
+    }
+
+    .movie-anamorphic-streak {
       position: absolute;
       top: 50%;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent 0%, rgba(0, 200, 255, 0.7) 25%, #ffcc00 50%, rgba(0, 200, 255, 0.7) 75%, transparent 100%);
-      box-shadow: 0 0 35px #ffcc00, 0 0 60px rgba(0, 200, 255, 0.8);
-      transform: translateY(-50%) scaleX(0);
-      animation: flareSweep 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      pointer-events: none;
-    }
-
-    @keyframes flareSweep {
-      0% { transform: translateY(-50%) scaleX(0); opacity: 0; }
-      40% { opacity: 1; transform: translateY(-50%) scaleX(1.1); }
-      100% { opacity: 0.35; transform: translateY(-50%) scaleX(1); }
-    }
-
-    .intro-card {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 680px;
-      width: 100%;
-      padding: 34px 28px;
-      border: 1.5px solid rgba(255, 204, 0, 0.35);
-      border-radius: 12px;
-      background: radial-gradient(circle at 50% 30%, rgba(255, 204, 0, 0.08) 0%, rgba(12, 14, 22, 0.88) 75%);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.85), 0 0 35px rgba(255, 204, 0, 0.18);
-      animation: introCardIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    @keyframes introCardIn {
-      0% { opacity: 0; transform: translateY(25px) scale(0.96); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .intro-studio-tag {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      color: var(--primary-yellow);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      text-shadow: 0 0 12px rgba(255, 204, 0, 0.5);
-    }
-
-    .intro-main-title {
-      font-family: var(--font-display);
-      font-size: clamp(34px, 7.5vw, 76px);
-      font-weight: 900;
-      line-height: 0.92;
-      text-transform: uppercase;
-      color: #ffffff;
-      letter-spacing: 2px;
-      text-shadow: 0 0 32px rgba(255, 204, 0, 0.5);
-      margin-bottom: 10px;
-    }
-
-    .intro-main-title span {
-      color: var(--primary-yellow);
-      display: block;
-    }
-
-    .intro-sub {
-      font-family: var(--font-body);
-      font-size: clamp(12.5px, 2vw, 15px);
-      color: rgba(255, 255, 255, 0.88);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      font-weight: 600;
-      line-height: 1.4;
-    }
-
-    .intro-progress-box {
-      width: 100%;
-      max-width: 280px;
-      margin: 0 auto 20px auto;
-    }
-
-    .intro-progress-bar-bg {
-      width: 100%;
+      left: -10%;
+      width: 120%;
       height: 3px;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 2px;
-      overflow: hidden;
+      background: linear-gradient(90deg, transparent 0%, rgba(0, 200, 255, 0.8) 25%, #ffcc00 50%, rgba(0, 200, 255, 0.8) 75%, transparent 100%);
+      box-shadow: 0 0 35px #ffcc00, 0 0 80px rgba(0, 200, 255, 0.9);
+      transform: translateY(-50%) scaleX(0);
+      animation: movieFlareSweep 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      pointer-events: none;
+      z-index: 1;
     }
 
-    .intro-progress-bar-fill {
-      width: 0%;
-      height: 100%;
-      background: var(--primary-yellow);
-      box-shadow: 0 0 10px var(--primary-yellow);
-      transition: width 2.4s cubic-bezier(0.16, 1, 0.3, 1);
+    @keyframes movieFlareSweep {
+      0% { transform: translateY(-50%) scaleX(0); opacity: 0; }
+      40% { transform: translateY(-50%) scaleX(1.1); opacity: 1; }
+      100% { transform: translateY(-50%) scaleX(1); opacity: 0.35; }
     }
 
-    .intro-actions {
+    /* Hero Name Card Container */
+    .movie-card-center {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      max-width: 950px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Phase 1: Presents Tag */
+    .movie-present-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(11px, 1.4vw, 13.5px);
+      font-weight: 700;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 22px;
+      opacity: 0;
+      animation: movieLeadIn 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+    }
+
+    @keyframes movieLeadIn {
+      0% { opacity: 0; letter-spacing: 3px; transform: translateY(-12px); }
+      100% { opacity: 1; letter-spacing: 8px; transform: translateY(0); }
+    }
+
+    /* Phase 2: Massive Blockbuster Hero Name Slam */
+    .movie-hero-title-box {
+      position: relative;
+      overflow: visible;
+      margin-bottom: 20px;
+    }
+
+    .movie-hero-title {
+      font-family: 'Cabinet Grotesk', 'Impact', sans-serif;
+      font-size: clamp(48px, 11.5vw, 125px);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.88;
+      letter-spacing: clamp(6px, 1.8vw, 22px);
+      margin: 0;
+      background: linear-gradient(180deg, #ffffff 0%, #fff0a6 38%, #ffcc00 70%, #d48800 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 35px rgba(255, 204, 0, 0.75)) drop-shadow(0 8px 30px rgba(0, 0, 0, 0.9));
+      opacity: 0;
+      transform: scale(1.35);
+      animation: movieHeroSlam 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+    }
+
+    @keyframes movieHeroSlam {
+      0% {
+        opacity: 0;
+        transform: scale(1.35);
+        filter: blur(14px) drop-shadow(0 0 50px rgba(255,204,0,1));
+      }
+      35% {
+        opacity: 1;
+        transform: scale(0.98);
+        filter: blur(0px) drop-shadow(0 0 40px rgba(255,204,0,0.85));
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1.02);
+        filter: blur(0px) drop-shadow(0 0 30px rgba(255,204,0,0.6));
+      }
+    }
+
+    /* Phase 3: Golden Divider & Hero Subtitle */
+    .movie-divider-wrap {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
+      gap: 16px;
+      width: 100%;
+      max-width: 520px;
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: movieFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.4s forwards;
     }
 
-    .intro-btn-action {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 28px;
-      background: var(--primary-yellow);
-      color: #0f1017;
-      font-family: var(--font-display);
+    .movie-line {
+      flex: 1;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent 0%, #ffcc00 50%, transparent 100%);
+      box-shadow: 0 0 8px #ffcc00;
+    }
+
+    .movie-star {
+      color: #ffcc00;
       font-size: 13px;
+      text-shadow: 0 0 10px #ffcc00;
+    }
+
+    .movie-hero-role {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: clamp(14px, 2.2vw, 24px);
       font-weight: 900;
-      letter-spacing: 1.8px;
+      letter-spacing: clamp(4px, 1.1vw, 9px);
       text-transform: uppercase;
-      border-radius: 4px;
-      cursor: pointer;
-      border: none;
-      box-shadow: 0 0 25px rgba(255, 204, 0, 0.5);
-      transition: all 0.25s ease;
-      text-decoration: none;
+      color: #ffffff;
+      margin-bottom: 10px;
+      opacity: 0;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.85);
+      animation: movieFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.65s forwards;
     }
 
-    .intro-btn-action:hover {
-      transform: scale(1.04);
-      box-shadow: 0 0 35px var(--primary-yellow);
+    .movie-hero-subtag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(10px, 1.2vw, 12.5px);
+      letter-spacing: 2.8px;
+      color: rgba(255, 204, 0, 0.92);
+      text-transform: uppercase;
+      opacity: 0;
+      text-shadow: 0 0 10px rgba(255, 204, 0, 0.4);
+      animation: movieFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.9s forwards;
     }
 
-    .intro-btn-skip {
-      display: inline-flex;
-      align-items: center;
-      padding: 11px 20px;
-      background: transparent;
-      color: rgba(255, 255, 255, 0.7);
-      font-family: var(--font-mono);
+    @keyframes movieFadeIn {
+      0% { opacity: 0; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Minimal Movie Skip / Enter Button */
+    .movie-skip-btn {
+      position: absolute;
+      bottom: 36px;
+      right: 48px;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: rgba(255, 255, 255, 0.8);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
+      padding: 9px 20px;
       border-radius: 4px;
       cursor: pointer;
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       transition: all 0.25s ease;
+      backdrop-filter: blur(8px);
     }
 
-    .intro-btn-skip:hover {
-      color: #fff;
+    .movie-skip-btn:hover {
+      color: #000;
+      background: var(--primary-yellow);
       border-color: var(--primary-yellow);
+      box-shadow: 0 0 20px var(--primary-yellow);
+    }
+
+    @media (max-width: 768px) {
+      .movie-skip-btn {
+        bottom: 24px;
+        right: 20px;
+        font-size: 10px;
+        padding: 7px 15px;
+      }
     }
 
     /* ========================================================
@@ -786,37 +835,27 @@
 </head>
 <body>
 
-  <!-- Fullscreen Cinematic Intro Overlay -->
-  <div class="cinema-intro-overlay" id="cinema-intro-overlay">
-    <div class="anamorphic-flare"></div>
-    <div class="intro-card">
-      <div class="intro-studio-tag">
-        <span>IMPACT FRAMES // AI-NATIVE STUDIO PRESENTATION</span>
+  <!-- Blockbuster Movie Hero Title Card Intro -->
+  <div class="movie-hero-intro" id="movie-hero-intro">
+    <div class="movie-spotlight"></div>
+    <div class="movie-anamorphic-streak"></div>
+    <div class="movie-card-center">
+      <div class="movie-present-tag">A PRODUCTION ARCHITECTED BY</div>
+      <div class="movie-hero-title-box">
+        <h1 class="movie-hero-title">GULSHAN KUMAR</h1>
       </div>
-      <h1 class="intro-main-title">
-        GULSHAN
-        <span>KUMAR</span>
-      </h1>
-      <p class="intro-sub">
-        BACKEND ARCHITECT • AI PLATFORMS • DISTRIBUTED SYSTEMS
-      </p>
-
-      <div class="intro-progress-box">
-        <div class="intro-progress-bar-bg">
-          <div class="intro-progress-bar-fill" id="intro-progress-fill"></div>
-        </div>
+      <div class="movie-divider-wrap">
+        <span class="movie-line"></span>
+        <span class="movie-star">✦</span>
+        <span class="movie-line"></span>
       </div>
-
-      <div class="intro-actions">
-        <button class="intro-btn-action" onclick="dismissIntro()">
-          <span>ENTER EXPERIENCE</span>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
-        </button>
-        <button class="intro-btn-skip" onclick="dismissIntro()">
-          SKIP INTRO
-        </button>
-      </div>
+      <div class="movie-hero-role">THE BACKEND ARCHITECT</div>
+      <div class="movie-hero-subtag">AI-NATIVE PLATFORMS • HIGH CONCURRENCY • ENTERPRISE ENGINES</div>
     </div>
+    <button class="movie-skip-btn" onclick="dismissIntro()">
+      <span>ENTER SITE</span>
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2.5"></line></svg>
+    </button>
   </div>
 
   <!-- Background Video Frame Scroll Canvas -->
@@ -1303,25 +1342,35 @@
       }
 
       // ========================================================
-      // CINEMATIC PROMO INTRO CONTROLS
+      // BLOCKBUSTER MOVIE HERO INTRO CONTROLS
       // ========================================================
-      const introOverlay = document.getElementById('cinema-intro-overlay');
-      const introFill = document.getElementById('intro-progress-fill');
+      const introOverlay = document.getElementById('movie-hero-intro');
       let introTimer = null;
 
       function startIntroAnimation() {
         if (!introOverlay) return;
         introOverlay.classList.remove('dismissed');
-        if (introFill) {
-          introFill.style.width = '0%';
-          setTimeout(() => {
-            introFill.style.width = '100%';
-          }, 60);
-        }
+
+        // Restart CSS keyframe animations cleanly if retriggered
+        const title = introOverlay.querySelector('.movie-hero-title');
+        const tag = introOverlay.querySelector('.movie-present-tag');
+        const divider = introOverlay.querySelector('.movie-divider-wrap');
+        const role = introOverlay.querySelector('.movie-hero-role');
+        const subtag = introOverlay.querySelector('.movie-hero-subtag');
+        const streak = introOverlay.querySelector('.movie-anamorphic-streak');
+        [title, tag, divider, role, subtag, streak].forEach(el => {
+          if (el) {
+            el.style.animation = 'none';
+            void el.offsetWidth; // trigger reflow
+            el.style.animation = '';
+          }
+        });
+
         clearTimeout(introTimer);
+        // Hero name sequence finishes, then seamlessly dissolves into portfolio site
         introTimer = setTimeout(() => {
           dismissIntro();
-        }, 3400);
+        }, 3800);
       }
 
       window.dismissIntro = function() {
@@ -1335,7 +1384,7 @@
         startIntroAnimation();
       };
 
-      // Launch intro on initial page load
+      // Launch blockbuster hero intro on initial page load
       startIntroAnimation();
     })();
   </script>
