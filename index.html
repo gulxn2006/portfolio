@@ -13,9 +13,9 @@
   <style>
     :root {
       --primary-yellow: #ffcc00;
-      --primary-yellow-glow: rgba(255, 204, 0, 0.45);
+      --primary-yellow-glow: rgba(255, 204, 0, 0.5);
       --bg-dark: #0f1017;
-      --card-bg: rgba(18, 21, 32, 0.88);
+      --card-bg: rgba(18, 21, 34, 0.86);
       --card-border: rgba(255, 204, 0, 0.25);
       --text-white: #f5f5f7;
       --text-muted: #9ba1b0;
@@ -36,7 +36,7 @@
 
     body {
       width: 100%;
-      height: 500vh; /* Smooth scrub travel height */
+      height: 500vh;
       margin: 0;
       padding: 0;
       background-color: var(--bg-dark);
@@ -85,7 +85,7 @@
       background-color: var(--bg-dark);
     }
 
-    /* Subtle Cinematic Vignette Overlay to enhance readability */
+    /* Cinematic Contrast Vignette Overlay */
     .vignette {
       position: fixed;
       top: 0;
@@ -93,7 +93,7 @@
       width: 100vw;
       height: 100vh;
       height: 100dvh;
-      background: radial-gradient(circle at 50% 50%, rgba(15, 16, 23, 0.1) 0%, rgba(15, 16, 23, 0.82) 85%);
+      background: radial-gradient(circle at 50% 50%, rgba(15, 16, 23, 0.08) 0%, rgba(15, 16, 23, 0.82) 85%);
       pointer-events: none;
       z-index: 2;
     }
@@ -179,7 +179,7 @@
       letter-spacing: 1px;
       color: var(--primary-yellow);
       line-height: 1;
-      box-shadow: 0 0 12px var(--primary-yellow-glow);
+      box-shadow: 0 0 14px var(--primary-yellow-glow);
     }
 
     .brand-text {
@@ -204,19 +204,19 @@
       text-transform: uppercase;
     }
 
-    /* Mobile Indicator Badge in Nav (Visible only on mobile) */
+    /* Mobile Indicator Badge in Nav */
     .mobile-stage-badge {
       display: none;
       font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 900;
       color: var(--primary-yellow);
       letter-spacing: 1.5px;
-      background: rgba(15, 16, 23, 0.85);
+      background: rgba(15, 16, 23, 0.9);
       border: 1px solid var(--primary-yellow);
-      padding: 4px 8px;
-      border-radius: 4px;
-      box-shadow: 0 0 10px var(--primary-yellow-glow);
+      padding: 4px 10px;
+      border-radius: 6px;
+      box-shadow: 0 0 12px var(--primary-yellow-glow);
     }
 
     /* Right Nav Actions */
@@ -339,7 +339,7 @@
       color: #ffffff;
       margin-bottom: 4px;
       display: block;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.9);
     }
 
     /* Giant Split Typography - Nat Geo Style */
@@ -351,7 +351,7 @@
       text-transform: uppercase;
       color: var(--primary-yellow);
       letter-spacing: 1px;
-      text-shadow: 0 0 30px var(--primary-yellow-glow);
+      text-shadow: 0 0 32px var(--primary-yellow-glow);
       display: block;
     }
 
@@ -366,18 +366,19 @@
       letter-spacing: 1px;
       display: block;
       margin-bottom: 16px;
-      filter: drop-shadow(0 0 12px rgba(255, 204, 0, 0.3));
+      filter: drop-shadow(0 0 14px rgba(255, 204, 0, 0.35));
     }
 
     .hero-submeta {
       font-family: 'JetBrains Mono', monospace;
       font-size: 12.5px;
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.9);
       margin-bottom: 18px;
       display: flex;
       align-items: center;
       gap: 10px;
       letter-spacing: 1px;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
     }
 
     .hero-submeta .status-dot {
@@ -385,7 +386,7 @@
       height: 7px;
       border-radius: 50%;
       background: #00ff88;
-      box-shadow: 0 0 8px #00ff88;
+      box-shadow: 0 0 10px #00ff88;
       display: inline-block;
       flex-shrink: 0;
     }
@@ -403,7 +404,7 @@
       align-items: center;
       gap: 10px;
       padding: 12px 24px;
-      background: rgba(15, 16, 23, 0.85);
+      background: rgba(15, 16, 23, 0.88);
       border: 2px solid var(--primary-yellow);
       color: #ffffff;
       font-family: 'Cabinet Grotesk', sans-serif;
@@ -412,17 +413,18 @@
       letter-spacing: 1.8px;
       text-transform: uppercase;
       cursor: pointer;
-      border-radius: 4px;
-      backdrop-filter: blur(10px);
+      border-radius: 6px;
+      backdrop-filter: blur(12px);
       transition: all 0.25s ease;
       text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
 
     .btn-action-primary:hover,
     .btn-action-primary:active {
       background: var(--primary-yellow);
       color: #000000;
-      box-shadow: 0 0 20px var(--primary-yellow);
+      box-shadow: 0 0 22px var(--primary-yellow);
       transform: translateY(-2px);
     }
 
@@ -432,21 +434,56 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: rgba(15, 16, 23, 0.85);
+      background: rgba(15, 16, 23, 0.88);
       border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 4px;
+      border-radius: 6px;
       color: #fff;
       cursor: pointer;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
       transition: all 0.25s ease;
       text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     }
 
     .btn-action-icon:hover {
       border-color: var(--primary-yellow);
       color: var(--primary-yellow);
       transform: translateY(-2px);
-      box-shadow: 0 0 12px rgba(255, 204, 0, 0.3);
+      box-shadow: 0 0 14px rgba(255, 204, 0, 0.35);
+    }
+
+    /* Mobile Floating Tech Micro-Badge (Brings rich telemetry to mobile!) */
+    .mobile-tech-badge {
+      display: none;
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, rgba(24, 28, 44, 0.88) 0%, rgba(13, 16, 26, 0.94) 100%);
+      border: 1px solid rgba(255, 204, 0, 0.3);
+      border-radius: 8px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 14px rgba(255, 204, 0, 0.15);
+    }
+
+    .mobile-tech-badge-title {
+      font-family: 'Cabinet Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--primary-yellow);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mobile-tech-badge-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     /* Right Preview Cards */
@@ -599,14 +636,15 @@
     }
 
     .skill-card {
-      background: rgba(18, 20, 29, 0.82);
+      background: var(--card-bg);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 8px;
       padding: 12px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      backdrop-filter: blur(16px);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
       overflow: hidden;
@@ -621,13 +659,13 @@
       width: 100%;
       height: 2px;
       background: var(--tech-color, var(--primary-yellow));
-      opacity: 0.5;
+      opacity: 0.6;
     }
 
     .skill-card:hover {
       transform: translateY(-4px);
       border-color: var(--tech-color, var(--primary-yellow));
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65), 0 0 16px var(--tech-glow, rgba(255, 204, 0, 0.25));
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.7), 0 0 18px var(--tech-glow, rgba(255, 204, 0, 0.3));
     }
 
     .skill-card-top {
@@ -641,8 +679,8 @@
       width: 36px;
       height: 36px;
       border-radius: 6px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -659,7 +697,7 @@
       font-size: 10px;
       font-weight: 700;
       color: var(--tech-color, var(--primary-yellow));
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(0, 0, 0, 0.5);
       padding: 2px 5px;
       border-radius: 4px;
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -678,7 +716,7 @@
     .skill-card-sub {
       font-family: 'JetBrains Mono', monospace;
       font-size: 9px;
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255, 255, 255, 0.65);
       margin-bottom: 8px;
       line-height: 1.25;
     }
@@ -686,7 +724,7 @@
     .skill-meter-bg {
       width: 100%;
       height: 3px;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.12);
       border-radius: 2px;
       overflow: hidden;
     }
@@ -695,18 +733,18 @@
       height: 100%;
       background: var(--tech-color, var(--primary-yellow));
       border-radius: 2px;
-      box-shadow: 0 0 6px var(--tech-color, var(--primary-yellow));
+      box-shadow: 0 0 8px var(--tech-color, var(--primary-yellow));
     }
 
     /* Brand Colors */
-    .tech-php { --tech-color: #8892be; --tech-glow: rgba(136, 146, 190, 0.3); }
-    .tech-laravel { --tech-color: #ff2d20; --tech-glow: rgba(255, 45, 32, 0.3); }
-    .tech-mysql { --tech-color: #00758f; --tech-glow: rgba(0, 117, 143, 0.35); }
-    .tech-antigravity { --tech-color: #ffcc00; --tech-glow: rgba(255, 204, 0, 0.4); }
-    .tech-codex { --tech-color: #10a37f; --tech-glow: rgba(16, 163, 127, 0.35); }
-    .tech-bootstrap { --tech-color: #9063cd; --tech-glow: rgba(144, 99, 205, 0.35); }
-    .tech-html { --tech-color: #e34f26; --tech-glow: rgba(227, 79, 38, 0.35); }
-    .tech-css { --tech-color: #2196f3; --tech-glow: rgba(33, 150, 243, 0.35); }
+    .tech-php { --tech-color: #8892be; --tech-glow: rgba(136, 146, 190, 0.35); }
+    .tech-laravel { --tech-color: #ff2d20; --tech-glow: rgba(255, 45, 32, 0.35); }
+    .tech-mysql { --tech-color: #00758f; --tech-glow: rgba(0, 117, 143, 0.4); }
+    .tech-antigravity { --tech-color: #ffcc00; --tech-glow: rgba(255, 204, 0, 0.45); }
+    .tech-codex { --tech-color: #10a37f; --tech-glow: rgba(16, 163, 127, 0.4); }
+    .tech-bootstrap { --tech-color: #9063cd; --tech-glow: rgba(144, 99, 205, 0.4); }
+    .tech-html { --tech-color: #e34f26; --tech-glow: rgba(227, 79, 38, 0.4); }
+    .tech-css { --tech-color: #2196f3; --tech-glow: rgba(33, 150, 243, 0.4); }
 
     /* Contact Details */
     .contact-card-list {
@@ -724,16 +762,17 @@
       padding: 12px 18px;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 6px;
+      border-radius: 8px;
       text-decoration: none;
       color: #fff;
       transition: all 0.25s;
+      backdrop-filter: blur(16px);
     }
 
     .contact-item:hover {
       border-color: var(--primary-yellow);
       transform: translateX(5px);
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
     }
 
     .contact-icon {
@@ -744,7 +783,7 @@
     .contact-label {
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(255, 255, 255, 0.55);
       text-transform: uppercase;
     }
 
@@ -754,7 +793,7 @@
       color: #fff;
     }
 
-    /* Scroll Prompt at Bottom Left */
+    /* Scroll Prompt at Bottom Left (Desktop only) */
     .scroll-hint {
       display: flex;
       align-items: center;
@@ -780,19 +819,19 @@
     }
 
     /* ========================================================
-       MOBILE & TABLET RESPONSIVE FIXES (CLEAN LAYOUT)
+       MOBILE ATTRACTIVE REDESIGN & FULL-BLEED EXPERIENCE
        ======================================================== */
     @media (max-width: 1024px) {
       .preview-cards-container {
         display: none !important;
       }
       .ui-overlay {
-        padding: 22px 24px;
+        padding: 20px 24px;
       }
       .section-stage {
         left: 24px;
         right: 24px;
-        top: 95px;
+        top: 90px;
         bottom: 24px;
       }
       .side-indicator {
@@ -801,30 +840,39 @@
     }
 
     @media (max-width: 768px) {
-      /* Mobile Viewport Sizing & Overlay */
+      /* Mobile Viewport Sizing & Vignette */
       .ui-overlay {
-        padding: 14px 16px;
+        padding: 16px;
       }
 
-      /* Hide side indicator on mobile so it doesn't overlap content */
+      /* Darker center vignette for high contrast against zoomed video animation */
+      .vignette {
+        background: radial-gradient(circle at 50% 45%, rgba(15, 16, 23, 0.25) 0%, rgba(15, 16, 23, 0.88) 80%);
+      }
+
+      /* Hide side indicator on mobile */
       .side-indicator {
         display: none !important;
       }
 
-      /* Show compact mobile stage badge in top nav */
+      /* Show mobile stage badge in top nav */
       .mobile-stage-badge {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
       }
 
-      /* Compact, Clean Mobile Navigation */
+      /* Sleek Frosted Glass Mobile Navigation */
       .nav-bar {
         flex-wrap: wrap;
-        gap: 10px;
-        background: rgba(15, 16, 23, 0.75);
-        backdrop-filter: blur(14px);
-        padding: 8px 12px;
-        border-radius: 8px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        gap: 8px;
+        background: rgba(15, 17, 26, 0.88);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 10px 14px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 204, 0, 0.25);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 204, 0, 0.1);
       }
 
       .brand-box {
@@ -834,7 +882,7 @@
       }
 
       .brand-name {
-        font-size: 12px;
+        font-size: 12.5px;
         letter-spacing: 1px;
       }
 
@@ -843,47 +891,69 @@
       }
 
       .nav-actions {
-        display: none !important; /* Hide cluttered header icons on mobile */
+        display: none !important;
       }
 
       .nav-links {
         width: 100%;
-        gap: 12px;
-        font-size: 10px;
+        gap: 8px;
+        font-size: 10.5px;
         letter-spacing: 1.5px;
-        justify-content: space-around;
-        padding-top: 6px;
+        justify-content: space-between;
+        padding-top: 8px;
         border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .nav-links a {
+        padding: 4px 6px;
+        border-radius: 4px;
+      }
+
+      .nav-links a.active {
+        background: rgba(255, 204, 0, 0.15);
+      }
+
+      .nav-links a.active::after {
+        display: none;
       }
 
       /* Mobile Section Stage Positioning */
       .section-stage {
-        left: 16px;
-        right: 16px;
-        top: 85px;
-        bottom: 16px;
-        align-items: center;
+        left: 14px;
+        right: 14px;
+        top: 98px;
+        bottom: 14px;
+        align-items: flex-end;
         justify-content: center;
       }
 
       .hero-main {
         max-width: 100%;
         margin-bottom: 0;
+        width: 100%;
+        background: linear-gradient(180deg, rgba(15, 17, 26, 0.7) 0%, rgba(12, 14, 22, 0.94) 100%);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 204, 0, 0.25);
+        border-radius: 12px;
+        padding: 18px 16px 16px 16px;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 204, 0, 0.15);
       }
 
       .hero-badge {
         font-size: 13px;
         letter-spacing: 2px;
         margin-bottom: 2px;
+        color: var(--primary-yellow);
       }
 
       .hero-title-solid {
-        font-size: clamp(38px, 12vw, 56px);
+        font-size: clamp(38px, 11vw, 54px);
         line-height: 0.92;
       }
 
       .hero-title-stroke {
-        font-size: clamp(38px, 12vw, 56px);
+        font-size: clamp(38px, 11vw, 54px);
         line-height: 0.92;
         -webkit-text-stroke: 1.8px var(--primary-yellow);
         margin-bottom: 10px;
@@ -891,37 +961,47 @@
 
       .hero-submeta {
         font-size: 11px;
-        margin-bottom: 14px;
+        margin-bottom: 12px;
         line-height: 1.35;
       }
 
       .hero-actions {
         gap: 10px;
-        margin-top: 12px;
+        margin-top: 10px;
       }
 
       .btn-action-primary {
         padding: 10px 18px;
         font-size: 11.5px;
         letter-spacing: 1.2px;
+        flex: 1;
+        justify-content: center;
       }
 
       .btn-action-icon {
-        width: 38px;
-        height: 38px;
+        width: 40px;
+        height: 40px;
       }
 
-      /* Mobile Compact 2-Column Skills Grid: Fits screen without scrolling */
+      /* Show mobile floating tech badge */
+      .mobile-tech-badge {
+        display: block;
+      }
+
+      /* Mobile 2-Column High-Tech Skills Grid */
       .skills-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
-        margin-top: 10px;
+        margin-top: 8px;
         max-width: 100%;
       }
 
       .skill-card {
         padding: 8px 10px;
-        border-radius: 6px;
+        border-radius: 7px;
+        background: rgba(18, 22, 36, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
       }
 
       .skill-card-top {
@@ -951,7 +1031,7 @@
 
       .skill-card-sub {
         font-size: 8px;
-        margin-bottom: 5px;
+        margin-bottom: 4px;
       }
 
       .skill-meter-bg {
@@ -961,13 +1041,14 @@
       /* Mobile Contact Items */
       .contact-card-list {
         gap: 8px;
-        margin-top: 12px;
+        margin-top: 10px;
         max-width: 100%;
       }
 
       .contact-item {
         padding: 10px 14px;
         gap: 10px;
+        border-radius: 8px;
       }
 
       .contact-val {
@@ -976,7 +1057,7 @@
       }
 
       .scroll-hint {
-        display: none !important; /* Hide hint on mobile to give full screen to content */
+        display: none !important;
       }
     }
   </style>
@@ -1005,8 +1086,11 @@
         </div>
       </a>
 
-      <!-- Mobile Stage Badge Indicator (shows 01/04 on mobile nav) -->
-      <div class="mobile-stage-badge" id="mobile-indicator">01 / 04</div>
+      <!-- Mobile Stage Badge Indicator -->
+      <div class="mobile-stage-badge" id="mobile-indicator">
+        <span style="width:6px; height:6px; border-radius:50%; background:#00ff88; display:inline-block; box-shadow:0 0 8px #00ff88;"></span>
+        <span id="mobile-counter-text">01 / 04</span>
+      </div>
 
       <!-- Navigation Links -->
       <ul class="nav-links">
@@ -1053,6 +1137,19 @@
           <button class="btn-action-icon" title="Share Portfolio" onclick="navigator.clipboard.writeText(window.location.href); alert('Portfolio link copied!');">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
           </button>
+        </div>
+
+        <!-- Mobile Floating Tech Telemetry Chip -->
+        <div class="mobile-tech-badge">
+          <div class="mobile-tech-badge-title">
+            <span>LARAVEL & MYSQL 8.0</span>
+            <span style="color:#00ff88;">⚡ 18MS P99</span>
+          </div>
+          <div class="mobile-tech-badge-sub">
+            <span>HIGH-CONCURRENCY ARCHITECTURE</span>
+            <span>•</span>
+            <span style="color:var(--primary-yellow);">2.4K REQ/S</span>
+          </div>
         </div>
       </div>
 
@@ -1279,6 +1376,19 @@
           </div>
 
         </div>
+
+        <!-- Mobile Floating Tech Telemetry Chip Stage 1 -->
+        <div class="mobile-tech-badge">
+          <div class="mobile-tech-badge-title">
+            <span>ANTIGRAVITY & CODEX</span>
+            <span style="color:#00ff88;">✦ AGENTIC AI</span>
+          </div>
+          <div class="mobile-tech-badge-sub">
+            <span>AUTONOMOUS PIPELINE</span>
+            <span>•</span>
+            <span style="color:var(--primary-yellow);">8 CORE SKILLS ACTIVE</span>
+          </div>
+        </div>
       </div>
 
       <!-- Right Preview Cards Stage 1 -->
@@ -1345,6 +1455,19 @@
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
             EXPLORE ARCHITECTURE
           </a>
+        </div>
+
+        <!-- Mobile Floating Tech Telemetry Chip Stage 2 -->
+        <div class="mobile-tech-badge">
+          <div class="mobile-tech-badge-title">
+            <span>REDIS & CLOUD CLUSTER</span>
+            <span style="color:#00ff88;">● 99.99% UPTIME</span>
+          </div>
+          <div class="mobile-tech-badge-sub">
+            <span>ASYNC QUEUE WORKERS</span>
+            <span>•</span>
+            <span style="color:var(--primary-yellow);">&lt; 5MS DELAY</span>
+          </div>
         </div>
       </div>
 
@@ -1424,6 +1547,19 @@
             </div>
           </a>
         </div>
+
+        <!-- Mobile Floating Tech Telemetry Chip Stage 3 -->
+        <div class="mobile-tech-badge">
+          <div class="mobile-tech-badge-title">
+            <span>CONNECT WITH GULSHAN</span>
+            <span style="color:#00ff88;">● ONLINE</span>
+          </div>
+          <div class="mobile-tech-badge-sub">
+            <span>FULL STACK & BACKEND SPECIALIST</span>
+            <span>•</span>
+            <span style="color:var(--primary-yellow);">2026 ACTIVE</span>
+          </div>
+        </div>
       </div>
 
       <div class="preview-cards-container">
@@ -1491,7 +1627,7 @@
       const navLinks = document.querySelectorAll('.nav-link');
       const indicatorCounter = document.getElementById('indicator-counter');
       const indicatorFill = document.getElementById('indicator-fill');
-      const mobileIndicator = document.getElementById('mobile-indicator');
+      const mobileCounterText = document.getElementById('mobile-counter-text');
       let activeStageIndex = 0;
 
       function getFrameSrc(index) {
@@ -1536,7 +1672,7 @@
       }
       processQueue();
 
-      // Load remaining frames in background without freezing phone
+      // Load remaining frames in background smoothly
       setTimeout(() => {
         for (let i = 10; i < TOTAL_FRAMES; i++) {
           loadQueue.push(i);
@@ -1545,11 +1681,10 @@
       }, isMobile ? 350 : 100);
 
       // ========================================================
-      // CANVAS SIZING WITH MOBILE DPR CAP (NO GPU MEMORY OVERLOAD)
+      // CANVAS SIZING WITH MOBILE OPTIMIZATION
       // ========================================================
       function resizeCanvas() {
         const mobile = window.innerWidth < 768;
-        // On mobile, cap DPR to 1.25 to prevent memory thrashing
         const dpr = mobile ? Math.min(window.devicePixelRatio || 1, 1.25) : Math.min(window.devicePixelRatio || 1, 2);
         canvas.width = Math.round(window.innerWidth * dpr);
         canvas.height = Math.round(window.innerHeight * dpr);
@@ -1577,6 +1712,9 @@
         return null;
       }
 
+      // ========================================================
+      // CINEMATIC DRAW: FULL-BLEED IMMERSIVE ZOOM ON MOBILE
+      // ========================================================
       function drawFrame(img) {
         if (!img || !img.complete || img.naturalWidth === 0) return;
 
@@ -1590,16 +1728,33 @@
 
         let drawW, drawH, dx, dy;
 
-        if (canvasRatio > imgRatio) {
-          drawH = ch;
-          drawW = ch * imgRatio;
+        const mobile = window.innerWidth < 768;
+
+        if (mobile) {
+          // CINEMATIC FULL-SCREEN COVER + 1.18x ZOOM ON MOBILE (NO LETTERBOXING)
+          const zoom = 1.18;
+          if (canvasRatio > imgRatio) {
+            drawW = cw * zoom;
+            drawH = (cw / imgRatio) * zoom;
+          } else {
+            drawH = ch * zoom;
+            drawW = (ch * imgRatio) * zoom;
+          }
           dx = (cw - drawW) / 2;
-          dy = 0;
-        } else {
-          drawW = cw;
-          drawH = cw / imgRatio;
-          dx = 0;
           dy = (ch - drawH) / 2;
+        } else {
+          // DESKTOP CONTAIN (PRESERVE FULL WIDESCREEN FRAME)
+          if (canvasRatio > imgRatio) {
+            drawH = ch;
+            drawW = ch * imgRatio;
+            dx = (cw - drawW) / 2;
+            dy = 0;
+          } else {
+            drawW = cw;
+            drawH = cw / imgRatio;
+            dx = 0;
+            dy = (ch - drawH) / 2;
+          }
         }
 
         ctx.fillStyle = '#0f1017';
@@ -1630,7 +1785,7 @@
 
           const counterText = `0${stageIdx + 1} / 04`;
           if (indicatorCounter) indicatorCounter.textContent = counterText;
-          if (mobileIndicator) mobileIndicator.textContent = counterText;
+          if (mobileCounterText) mobileCounterText.textContent = counterText;
           activeStageIndex = stageIdx;
         }
 
@@ -1647,8 +1802,7 @@
         targetProgress = maxScroll > 0 ? currentScroll / maxScroll : 0;
         targetProgress = Math.max(0, Math.min(1, targetProgress));
 
-        // Smooth continuous easing (optimized for mobile touch)
-        const lerpSpeed = isMobile ? 0.18 : 0.12;
+        const lerpSpeed = isMobile ? 0.16 : 0.12;
         currentProgress += (targetProgress - currentProgress) * lerpSpeed;
 
         if (Math.abs(targetProgress - currentProgress) < 0.0001) {
@@ -1721,7 +1875,7 @@
 
       // Touch Scrub (Mobile & Tablets)
       window.addEventListener('touchstart', (e) => {
-        if (e.target.closest('a') || e.target.closest('button')) {
+        if (e.target.closest('a') || e.target.closest('button') || e.target.closest('.skill-card')) {
           return;
         }
         isDragging = true;
@@ -1732,7 +1886,8 @@
       window.addEventListener('touchmove', (e) => {
         if (!isDragging) return;
         const deltaY = e.touches[0].clientY - startY;
-        const maxScroll = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight;
+        const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+        const maxScroll = scrollHeight - window.innerHeight;
         const nextScroll = Math.max(0, Math.min(maxScroll, startScroll - deltaY * 2.2));
         window.scrollTo(0, nextScroll);
       }, { passive: true });
