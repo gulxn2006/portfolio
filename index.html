@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-  <title>Gulshan Kumar — Backend Developer Portfolio</title>
+  <title>Gulshan Kumar — Backend Architect & AI Engineer</title>
   
-  <!-- Google Fonts for High-Impact Editorial Typography -->
+  <!-- Editorial Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --primary-yellow: #ffcc00;
-      --primary-yellow-glow: rgba(255, 204, 0, 0.5);
-      --bg-dark: #0f1017;
-      --card-bg: rgba(18, 21, 34, 0.86);
-      --card-border: rgba(255, 204, 0, 0.25);
-      --text-white: #f5f5f7;
-      --text-muted: #9ba1b0;
+      --bg-dark: #080a0f;
+      --text-white: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.72);
+      --font-display: 'Cabinet Grotesk', -apple-system, sans-serif;
+      --font-body: 'Outfit', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
 
     * {
@@ -32,6 +32,7 @@
       overflow-y: scroll;
       overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
+      scroll-behavior: auto;
     }
 
     body {
@@ -40,27 +41,24 @@
       margin: 0;
       padding: 0;
       background-color: var(--bg-dark);
-      font-family: 'Outfit', -apple-system, sans-serif;
+      font-family: var(--font-body);
       color: var(--text-white);
       user-select: none;
       -webkit-user-select: none;
       touch-action: pan-y;
     }
 
-    /* Minimalist sleek yellow-accent scrollbar */
+    /* Minimal sleek scrollbar */
     ::-webkit-scrollbar {
-      width: 5px;
+      width: 4px;
     }
-
     ::-webkit-scrollbar-track {
       background: var(--bg-dark);
     }
-
     ::-webkit-scrollbar-thumb {
-      background: rgba(255, 204, 0, 0.35);
-      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 2px;
     }
-
     ::-webkit-scrollbar-thumb:hover {
       background: var(--primary-yellow);
     }
@@ -85,2014 +83,509 @@
       background-color: var(--bg-dark);
     }
 
-    /* Cinematic Contrast Vignette Overlay */
+    /* Cinematic Left Dark Vignette (Matches reference design) */
     .vignette {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      height: 100dvh;
-      background: radial-gradient(circle at 50% 50%, rgba(15, 16, 23, 0.08) 0%, rgba(15, 16, 23, 0.82) 85%);
+      inset: 0;
+      background: linear-gradient(90deg, 
+        rgba(8, 10, 15, 0.96) 0%, 
+        rgba(8, 10, 15, 0.86) 32%, 
+        rgba(8, 10, 15, 0.35) 60%, 
+        rgba(8, 10, 15, 0.05) 100%
+      );
       pointer-events: none;
       z-index: 2;
     }
 
-    /* Fixed UI Master Overlay */
-    .ui-overlay {
+    /* Master Overlay Container */
+    .master-layout {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      height: 100dvh;
+      inset: 0;
       z-index: 10;
       pointer-events: none;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 30px 44px;
+      padding: 36px 56px;
     }
 
-    /* Header Nav Bar */
+    /* ========================================================
+       TOP NAVIGATION BAR
+       ======================================================== */
     .nav-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       width: 100%;
       pointer-events: auto;
-      z-index: 30;
+      z-index: 20;
+    }
+
+    .nav-brand {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .nav-links {
       display: flex;
-      gap: 22px;
+      align-items: center;
+      gap: 32px;
       list-style: none;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
     }
 
     .nav-links a {
-      color: rgba(255, 255, 255, 0.75);
+      color: rgba(255, 255, 255, 0.72);
       text-decoration: none;
-      transition: color 0.25s, text-shadow 0.25s;
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      transition: color 0.25s;
       cursor: pointer;
-      position: relative;
-      padding: 4px 0;
     }
 
     .nav-links a:hover,
     .nav-links a.active {
-      color: var(--primary-yellow);
-      text-shadow: 0 0 12px var(--primary-yellow-glow);
+      color: #ffffff;
     }
 
-    .nav-links a.active::after {
-      content: '';
+    /* ========================================================
+       LEFT HERO CONTENT BLOCK (INTO THE WILD STYLE)
+       ======================================================== */
+    .hero-content-wrapper {
       position: absolute;
-      bottom: -3px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--primary-yellow);
-      box-shadow: 0 0 8px var(--primary-yellow);
-    }
-
-    /* Center Logo in Brand Border Box - Nat Geo Wild Style */
-    .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      text-decoration: none;
-      user-select: none;
-    }
-
-    .brand-box {
-      border: 2.5px solid var(--primary-yellow);
-      padding: 3px 7px;
-      font-family: 'Cabinet Grotesk', 'Outfit', sans-serif;
-      font-weight: 900;
-      font-size: 16px;
-      letter-spacing: 1px;
-      color: var(--primary-yellow);
-      line-height: 1;
-      box-shadow: 0 0 14px var(--primary-yellow-glow);
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      text-align: left;
-    }
-
-    .brand-name {
-      font-weight: 800;
-      font-size: 15px;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      color: #fff;
-    }
-
-    .brand-role {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9.5px;
-      letter-spacing: 1.5px;
-      color: var(--primary-yellow);
-      text-transform: uppercase;
-    }
-
-    /* Mobile Indicator Badge in Nav */
-    .mobile-stage-badge {
-      display: none;
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: 13px;
-      font-weight: 900;
-      color: var(--primary-yellow);
-      letter-spacing: 1.5px;
-      background: rgba(15, 16, 23, 0.9);
-      border: 1px solid var(--primary-yellow);
-      padding: 4px 10px;
-      border-radius: 6px;
-      box-shadow: 0 0 12px var(--primary-yellow-glow);
-    }
-
-    /* Right Nav Actions */
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .nav-btn-icon {
-      background: none;
-      border: none;
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 15px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: color 0.2s, transform 0.2s;
-    }
-
-    .nav-btn-icon:hover {
-      color: var(--primary-yellow);
-      transform: scale(1.15);
-    }
-
-    /* Right Vertical Tracker Indicator */
-    .side-indicator {
-      position: fixed;
-      right: 32px;
       top: 50%;
+      left: 56px;
       transform: translateY(-50%);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      z-index: 20;
-      pointer-events: none;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-    }
-
-    .side-indicator-text {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.6);
-      transform: rotate(180deg);
-    }
-
-    .side-indicator-accent {
-      width: 4px;
-      height: 65px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 2px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .side-indicator-fill {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 25%;
-      background: var(--primary-yellow);
-      box-shadow: 0 0 10px var(--primary-yellow);
-      transition: height 0.15s ease-out;
-    }
-
-    .side-indicator-counter {
-      font-family: 'Cabinet Grotesk', 'Outfit', sans-serif;
-      font-size: 19px;
-      font-weight: 900;
-      color: var(--primary-yellow);
-      letter-spacing: 2px;
-      transform: rotate(180deg);
-      text-shadow: 0 0 12px var(--primary-yellow-glow);
-    }
-
-    /* Section Pop-up Containers */
-    .section-stage {
-      position: absolute;
-      top: 110px;
-      left: 44px;
-      right: 44px;
-      bottom: 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      pointer-events: none;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(28px) scale(0.98);
-      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                  visibility 0.5s;
-    }
-
-    .section-stage.active {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0) scale(1);
+      max-width: 580px;
       pointer-events: auto;
+      z-index: 15;
     }
 
-    /* Left Hero Main Info Box */
-    .hero-main {
-      max-width: 650px;
-      margin-bottom: 10px;
-    }
-
-    .hero-badge {
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: 20px;
-      font-weight: 900;
+    /* Upper Lead Header (e.g. INTO THE) */
+    .hero-lead {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.5vw, 30px);
+      font-weight: 800;
       letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #ffffff;
-      margin-bottom: 4px;
-      display: block;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.9);
-    }
-
-    /* Giant Split Typography - Nat Geo Style */
-    .hero-title-solid {
-      font-family: 'Cabinet Grotesk', 'Impact', sans-serif;
-      font-size: clamp(48px, 7vw, 95px);
-      font-weight: 900;
-      line-height: 0.88;
-      text-transform: uppercase;
-      color: var(--primary-yellow);
-      letter-spacing: 1px;
-      text-shadow: 0 0 32px var(--primary-yellow-glow);
-      display: block;
-    }
-
-    .hero-title-stroke {
-      font-family: 'Cabinet Grotesk', 'Impact', sans-serif;
-      font-size: clamp(48px, 7vw, 95px);
-      font-weight: 900;
-      line-height: 0.88;
-      text-transform: uppercase;
-      color: transparent;
-      -webkit-text-stroke: 2.2px var(--primary-yellow);
-      letter-spacing: 1px;
-      display: block;
-      margin-bottom: 16px;
-      filter: drop-shadow(0 0 14px rgba(255, 204, 0, 0.35));
-    }
-
-    .hero-submeta {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12.5px;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
-    }
-
-    .hero-submeta .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #00ff88;
-      box-shadow: 0 0 10px #00ff88;
-      display: inline-block;
-      flex-shrink: 0;
-    }
-
-    /* Action Buttons Row */
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .btn-action-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 24px;
-      background: rgba(15, 16, 23, 0.88);
-      border: 2px solid var(--primary-yellow);
-      color: #ffffff;
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: 12.5px;
-      font-weight: 900;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      cursor: pointer;
-      border-radius: 6px;
-      backdrop-filter: blur(12px);
-      transition: all 0.25s ease;
-      text-decoration: none;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    }
-
-    .btn-action-primary:hover,
-    .btn-action-primary:active {
-      background: var(--primary-yellow);
-      color: #000000;
-      box-shadow: 0 0 22px var(--primary-yellow);
-      transform: translateY(-2px);
-    }
-
-    .btn-action-icon {
-      width: 44px;
-      height: 44px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(15, 16, 23, 0.88);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 6px;
-      color: #fff;
-      cursor: pointer;
-      backdrop-filter: blur(12px);
-      transition: all 0.25s ease;
-      text-decoration: none;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    }
-
-    .btn-action-icon:hover {
-      border-color: var(--primary-yellow);
-      color: var(--primary-yellow);
-      transform: translateY(-2px);
-      box-shadow: 0 0 14px rgba(255, 204, 0, 0.35);
-    }
-
-    /* Mobile Floating Tech Micro-Badge (Brings rich telemetry to mobile!) */
-    .mobile-tech-badge {
-      display: none;
-      margin-top: 14px;
-      padding: 10px 14px;
-      background: linear-gradient(135deg, rgba(24, 28, 44, 0.88) 0%, rgba(13, 16, 26, 0.94) 100%);
-      border: 1px solid rgba(255, 204, 0, 0.3);
-      border-radius: 8px;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 14px rgba(255, 204, 0, 0.15);
-    }
-
-    .mobile-tech-badge-title {
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: 13px;
-      font-weight: 900;
-      color: var(--primary-yellow);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .mobile-tech-badge-sub {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: rgba(255, 255, 255, 0.7);
-      margin-top: 3px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* Right Preview Cards */
-    .preview-cards-container {
-      display: flex;
-      gap: 18px;
-      margin-bottom: 12px;
-      margin-right: 28px;
-      pointer-events: auto;
-    }
-
-    .preview-card {
-      width: 240px;
-      height: 275px;
-      background: radial-gradient(circle at 85% 15%, rgba(255, 204, 0, 0.08) 0%, transparent 65%),
-                  linear-gradient(155deg, rgba(24, 28, 42, 0.94) 0%, rgba(13, 16, 25, 0.97) 100%);
-      border: 1.5px solid rgba(255, 204, 0, 0.22);
-      border-radius: 10px;
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      backdrop-filter: blur(20px);
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.75);
-      text-decoration: none;
-    }
-
-    .preview-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(rgba(255, 204, 0, 0.12) 1px, transparent 1px);
-      background-size: 16px 16px;
-      opacity: 0.5;
-      pointer-events: none;
-    }
-
-    .preview-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--primary-yellow);
-      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.85), 0 0 24px rgba(255, 204, 0, 0.3);
-    }
-
-    .card-header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 8px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .card-top-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.75);
-      line-height: 1.35;
-    }
-
-    .card-metric-badge {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 8.5px;
-      font-weight: 700;
-      color: var(--primary-yellow);
-      background: rgba(15, 16, 23, 0.8);
-      border: 1px solid rgba(255, 204, 0, 0.35);
-      padding: 3px 6px;
-      border-radius: 4px;
-      white-space: nowrap;
-      text-shadow: 0 0 8px var(--primary-yellow-glow);
-    }
-
-    .card-tech-visual {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 12px 0;
-      height: 70px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px dashed rgba(255, 204, 0, 0.18);
-      border-radius: 8px;
-      transition: all 0.3s ease;
-    }
-
-    .preview-card:hover .card-tech-visual {
-      border-color: var(--primary-yellow);
-      background: rgba(255, 204, 0, 0.05);
-    }
-
-    .card-bottom-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      position: relative;
-      z-index: 2;
-    }
-
-    .card-title {
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: 17px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--primary-yellow);
-      line-height: 1.15;
-      text-shadow: 0 0 16px var(--primary-yellow-glow);
-    }
-
-    .card-play-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      border: 2px solid rgba(255, 255, 255, 0.7);
-      background: rgba(15, 16, 23, 0.75);
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 12px;
-      transition: all 0.3s ease;
-      flex-shrink: 0;
-      margin-left: 8px;
-    }
-
-    .preview-card:hover .card-play-btn {
-      border-color: var(--primary-yellow);
-      background: var(--primary-yellow);
-      color: #000;
-      transform: scale(1.12);
-      box-shadow: 0 0 18px var(--primary-yellow);
-    }
-
-    /* Skills Grid */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 14px;
-      max-width: 680px;
-    }
-
-    .skill-card {
-      background: var(--card-bg);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 8px;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .skill-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--tech-color, var(--primary-yellow));
-      opacity: 0.6;
-    }
-
-    .skill-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--tech-color, var(--primary-yellow));
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.7), 0 0 18px var(--tech-glow, rgba(255, 204, 0, 0.3));
-    }
-
-    .skill-card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-
-    .skill-icon-box {
-      width: 36px;
-      height: 36px;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.25s ease;
-    }
-
-    .skill-card:hover .skill-icon-box {
-      transform: scale(1.08);
-      border-color: var(--tech-color, var(--primary-yellow));
-    }
-
-    .skill-pct {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--tech-color, var(--primary-yellow));
-      background: rgba(0, 0, 0, 0.5);
-      padding: 2px 5px;
-      border-radius: 4px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .skill-card-name {
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: 14px;
-      font-weight: 900;
-      letter-spacing: 1px;
       text-transform: uppercase;
       color: #ffffff;
       margin-bottom: 2px;
+      line-height: 1.1;
     }
 
-    .skill-card-sub {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      color: rgba(255, 255, 255, 0.65);
-      margin-bottom: 8px;
-      line-height: 1.25;
-    }
-
-    .skill-meter-bg {
-      width: 100%;
-      height: 3px;
-      background: rgba(255, 255, 255, 0.12);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .skill-meter-fill {
-      height: 100%;
-      background: var(--tech-color, var(--primary-yellow));
-      border-radius: 2px;
-      box-shadow: 0 0 8px var(--tech-color, var(--primary-yellow));
-    }
-
-    /* Brand Colors */
-    .tech-php { --tech-color: #8892be; --tech-glow: rgba(136, 146, 190, 0.35); }
-    .tech-laravel { --tech-color: #ff2d20; --tech-glow: rgba(255, 45, 32, 0.35); }
-    .tech-mysql { --tech-color: #00758f; --tech-glow: rgba(0, 117, 143, 0.4); }
-    .tech-antigravity { --tech-color: #ffcc00; --tech-glow: rgba(255, 204, 0, 0.45); }
-    .tech-codex { --tech-color: #10a37f; --tech-glow: rgba(16, 163, 127, 0.4); }
-    .tech-bootstrap { --tech-color: #9063cd; --tech-glow: rgba(144, 99, 205, 0.4); }
-    .tech-html { --tech-color: #e34f26; --tech-glow: rgba(227, 79, 38, 0.4); }
-    .tech-css { --tech-color: #2196f3; --tech-glow: rgba(33, 150, 243, 0.4); }
-
-    /* Contact Details */
-    .contact-card-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 14px;
-      max-width: 480px;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 12px 18px;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 8px;
-      text-decoration: none;
-      color: #fff;
-      transition: all 0.25s;
-      backdrop-filter: blur(16px);
-    }
-
-    .contact-item:hover {
-      border-color: var(--primary-yellow);
-      transform: translateX(5px);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-    }
-
-    .contact-icon {
-      color: var(--primary-yellow);
-      font-size: 16px;
-    }
-
-    .contact-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: rgba(255, 255, 255, 0.55);
-      text-transform: uppercase;
-    }
-
-    .contact-val {
-      font-weight: 700;
-      font-size: 14px;
-      color: #fff;
-    }
-
-    /* Scroll Prompt at Bottom Left (Desktop only) */
-    .scroll-hint {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10.5px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.4);
-      pointer-events: auto;
-    }
-
-    .scroll-hint-bar {
-      width: 26px;
-      height: 2px;
-      background: var(--primary-yellow);
-      animation: pulseBar 1.8s infinite ease-in-out;
-    }
-
-    @keyframes pulseBar {
-      0%, 100% { transform: scaleX(0.4); opacity: 0.3; }
-      50% { transform: scaleX(1); opacity: 1; }
-    }
-
-    /* ========================================================
-       AI-NATIVE CINEMA PROMO HUD & INTRO OVERLAY
-       (Inspired by ImpactFrames AI Filmmaking Platform)
-       ======================================================== */
-    /* Viewfinder Camera Crosshair HUD Frame */
-    .cinema-hud {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 9;
-      box-sizing: border-box;
-      padding: 16px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .hud-corner {
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      border-color: rgba(255, 204, 0, 0.45);
-      border-style: solid;
-      pointer-events: none;
-    }
-    .hud-tl { top: 12px; left: 14px; border-width: 2px 0 0 2px; }
-    .hud-tr { top: 12px; right: 14px; border-width: 2px 2px 0 0; }
-    .hud-bl { bottom: 12px; left: 14px; border-width: 0 0 2px 2px; }
-    .hud-br { bottom: 12px; right: 14px; border-width: 0 2px 2px 0; }
-
-    .hud-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      color: rgba(255, 255, 255, 0.6);
-      text-transform: uppercase;
-      padding-top: 2px;
-    }
-
-    .hud-rec {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      color: #ff3344;
-      font-weight: 700;
-    }
-
-    .hud-rec-dot {
-      width: 8px;
-      height: 8px;
-      background: #ff3344;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #ff3344;
-      animation: hudBlink 1.2s infinite ease-in-out;
-    }
-
-    @keyframes hudBlink {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.25; transform: scale(0.8); }
-    }
-
-    .hud-tc {
-      font-family: 'JetBrains Mono', monospace;
-      color: var(--primary-yellow);
-      font-size: 11px;
-      font-weight: 700;
-      text-shadow: 0 0 8px var(--primary-yellow-glow);
-    }
-
-    .hud-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9.5px;
-      letter-spacing: 1.5px;
-      color: rgba(255, 255, 255, 0.5);
-      padding-bottom: 2px;
-    }
-
-    .hud-audio-bars {
-      display: flex;
-      align-items: flex-end;
-      gap: 3px;
-      height: 14px;
-    }
-
-    .hud-bar {
-      width: 3px;
-      background: #00ff88;
-      box-shadow: 0 0 6px #00ff88;
-      border-radius: 1px;
-      animation: audioWave 1.2s infinite ease-in-out alternate;
-    }
-    .hud-bar:nth-child(1) { height: 35%; animation-delay: 0.1s; }
-    .hud-bar:nth-child(2) { height: 80%; animation-delay: 0.25s; }
-    .hud-bar:nth-child(3) { height: 100%; animation-delay: 0.4s; }
-    .hud-bar:nth-child(4) { height: 50%; animation-delay: 0.15s; }
-    .hud-bar:nth-child(5) { height: 85%; animation-delay: 0.3s; }
-
-    @keyframes audioWave {
-      0% { transform: scaleY(0.3); }
-      100% { transform: scaleY(1); }
-    }
-
-    /* FULLSCREEN CINEMATIC PROMO INTRO OVERLAY */
-    .cinema-intro-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(10, 11, 18, 0.94);
-      backdrop-filter: blur(28px);
-      -webkit-backdrop-filter: blur(28px);
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 24px;
-      opacity: 1;
-      visibility: visible;
-      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.75s;
-      overflow: hidden;
-    }
-
-    .cinema-intro-overlay.dismissed {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    /* Anamorphic Blue/Gold Lens Flare Streak */
-    .anamorphic-flare {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent 0%, rgba(0, 200, 255, 0.7) 25%, #ffcc00 50%, rgba(0, 200, 255, 0.7) 75%, transparent 100%);
-      box-shadow: 0 0 35px #ffcc00, 0 0 60px rgba(0, 200, 255, 0.8);
-      transform: translateY(-50%) scaleX(0);
-      animation: flareSweep 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      pointer-events: none;
-    }
-
-    @keyframes flareSweep {
-      0% { transform: translateY(-50%) scaleX(0); opacity: 0; }
-      40% { opacity: 1; transform: translateY(-50%) scaleX(1.1); }
-      100% { opacity: 0.35; transform: translateY(-50%) scaleX(1); }
-    }
-
-    .intro-card {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 720px;
-      width: 100%;
-      padding: 34px 28px;
-      border: 1.5px solid rgba(255, 204, 0, 0.35);
-      border-radius: 14px;
-      background: radial-gradient(circle at 50% 30%, rgba(255, 204, 0, 0.08) 0%, rgba(15, 17, 26, 0.88) 75%);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.85), 0 0 35px rgba(255, 204, 0, 0.18);
-      animation: introCardIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    @keyframes introCardIn {
-      0% { opacity: 0; transform: translateY(25px) scale(0.96); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .intro-studio-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      color: var(--primary-yellow);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      text-shadow: 0 0 12px var(--primary-yellow-glow);
-    }
-
-    .intro-main-title {
-      font-family: 'Cabinet Grotesk', 'Impact', sans-serif;
-      font-size: clamp(34px, 7.5vw, 76px);
+    /* Giant Title (e.g. WILD) with Split Text Animation */
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 6.8vw, 92px);
       font-weight: 900;
-      line-height: 0.92;
+      letter-spacing: 1px;
       text-transform: uppercase;
       color: #ffffff;
-      letter-spacing: 2px;
-      text-shadow: 0 0 32px var(--primary-yellow-glow);
-      margin-bottom: 10px;
-    }
-
-    .intro-main-title span {
-      color: var(--primary-yellow);
-      display: block;
-      -webkit-text-stroke: 1.5px var(--primary-yellow);
-      filter: drop-shadow(0 0 16px var(--primary-yellow-glow));
-    }
-
-    .intro-sub {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(12.5px, 2vw, 15px);
-      color: rgba(255, 255, 255, 0.88);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      font-weight: 600;
-      line-height: 1.4;
-    }
-
-    .intro-pills {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px;
+      line-height: 0.92;
       margin-bottom: 22px;
     }
 
-    .intro-pill {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 5px 12px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 204, 0, 0.3);
-      color: #fff;
-      letter-spacing: 1px;
-    }
-
-    .intro-progress-box {
-      width: 100%;
-      max-width: 300px;
-      margin: 0 auto 20px auto;
-    }
-
-    .intro-progress-labels {
-      display: flex;
-      justify-content: space-between;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9.5px;
-      color: rgba(255, 255, 255, 0.6);
-      margin-bottom: 6px;
-      letter-spacing: 1.2px;
-    }
-
-    .intro-progress-bar-bg {
-      width: 100%;
-      height: 3px;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 2px;
+    /* Split Text Kinetic Effect */
+    .split-word-wrap {
+      display: inline-block;
       overflow: hidden;
+      vertical-align: top;
+      margin-right: 0.22em;
     }
 
-    .intro-progress-bar-fill {
-      width: 0%;
-      height: 100%;
-      background: var(--primary-yellow);
-      box-shadow: 0 0 10px var(--primary-yellow);
-      transition: width 2.2s cubic-bezier(0.16, 1, 0.3, 1);
+    .split-word-inner {
+      display: inline-block;
+      transform: translateY(115%);
+      opacity: 0;
+      transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .intro-actions {
+    .split-word-inner.split-active {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+
+    /* Description Paragraph with Left Vertical Border Line */
+    .hero-desc {
+      border-left: 2px solid rgba(255, 255, 255, 0.38);
+      padding-left: 18px;
+      font-size: clamp(12.5px, 1.1vw, 14.5px);
+      line-height: 1.65;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin-bottom: 28px;
+      transition: opacity 0.4s ease;
+    }
+
+    /* Buttons Row (Explore all trips / Explore packages style) */
+    .hero-actions {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 12px;
+      gap: 16px;
+      margin-bottom: 30px;
       flex-wrap: wrap;
     }
 
-    .intro-btn-action {
+    .btn-solid {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 12px 28px;
-      background: var(--primary-yellow);
-      color: #0f1017;
-      font-family: 'Cabinet Grotesk', sans-serif;
+      justify-content: center;
+      padding: 11px 26px;
+      background: #ffffff;
+      color: #0b0c12;
+      font-family: var(--font-body);
       font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      border-radius: 6px;
-      cursor: pointer;
-      border: none;
-      box-shadow: 0 0 25px var(--primary-yellow-glow);
-      transition: all 0.25s ease;
-      text-decoration: none;
-    }
-
-    .intro-btn-action:hover {
-      transform: scale(1.04);
-      box-shadow: 0 0 35px var(--primary-yellow);
-    }
-
-    .intro-btn-skip {
-      display: inline-flex;
-      align-items: center;
-      padding: 11px 20px;
-      background: transparent;
-      color: rgba(255, 255, 255, 0.7);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      border-radius: 6px;
-      cursor: pointer;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      letter-spacing: 0.3px;
+      text-decoration: none;
+      border-radius: 4px;
       transition: all 0.25s ease;
+      cursor: pointer;
+      border: 1.5px solid #ffffff;
     }
 
-    .intro-btn-skip:hover {
-      color: #fff;
+    .btn-solid:hover {
+      background: var(--primary-yellow);
       border-color: var(--primary-yellow);
+      color: #000000;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(255, 204, 0, 0.35);
     }
 
-    /* Replay Intro Button in Top Nav */
-    .nav-btn-intro {
+    .btn-outline {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
-      background: rgba(255, 204, 0, 0.12);
-      border: 1px solid var(--primary-yellow);
-      border-radius: 5px;
-      color: var(--primary-yellow);
-      font-family: 'Cabinet Grotesk', sans-serif;
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 1.2px;
+      justify-content: center;
+      padding: 11px 26px;
+      background: transparent;
+      color: #ffffff;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      text-decoration: none;
+      border-radius: 4px;
+      border: 1.5px solid rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.25s ease;
       cursor: pointer;
-      text-transform: uppercase;
+    }
+
+    .btn-outline:hover {
+      border-color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Bottom Playback & Scrubber Controls */
+    .hero-playback {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-play-toggle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1.5px solid rgba(255, 255, 255, 0.5);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
       transition: all 0.25s;
     }
 
-    .nav-btn-intro:hover {
-      background: var(--primary-yellow);
-      color: #0f1017;
-      box-shadow: 0 0 14px var(--primary-yellow);
+    .btn-play-toggle:hover {
+      border-color: #ffffff;
+      background: #ffffff;
+      color: #000000;
+      transform: scale(1.08);
+    }
+
+    .scrub-line-container {
+      width: 240px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .scrub-track {
+      width: 100%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 1px;
+      position: relative;
+    }
+
+    .scrub-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background: #ffffff;
+      border-radius: 1px;
+    }
+
+    .scrub-thumb {
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ffffff;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 10px #ffffff;
+      pointer-events: none;
+      transition: transform 0.15s ease;
+    }
+
+    .scrub-line-container:hover .scrub-thumb {
+      transform: translate(-50%, -50%) scale(1.5);
     }
 
     /* ========================================================
-       MOBILE ATTRACTIVE REDESIGN & FULL-BLEED EXPERIENCE
+       BOTTOM LEFT VERTICAL SOCIAL ICONS
        ======================================================== */
-    @media (max-width: 1024px) {
-      .preview-cards-container {
-        display: none !important;
+    .bottom-socials {
+      position: fixed;
+      left: 56px;
+      bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      z-index: 20;
+      pointer-events: auto;
+    }
+
+    .social-icon-btn {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.25s, transform 0.25s;
+    }
+
+    .social-icon-btn:hover {
+      color: #ffffff;
+      transform: translateX(3px);
+    }
+
+    /* ========================================================
+       BOTTOM RIGHT PAGINATION DOTS
+       ======================================================== */
+    .bottom-pagination {
+      position: fixed;
+      right: 56px;
+      bottom: 36px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 20;
+      pointer-events: auto;
+    }
+
+    .page-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .page-dot.active {
+      width: 9px;
+      height: 9px;
+      background: #ffffff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+    }
+
+    /* ========================================================
+       RESPONSIVE DESIGN (MOBILE & TABLETS)
+       ======================================================== */
+    @media (max-width: 900px) {
+      .master-layout {
+        padding: 24px 28px;
       }
-      .ui-overlay {
-        padding: 20px 24px;
+      .hero-content-wrapper {
+        left: 28px;
+        right: 28px;
+        max-width: 100%;
       }
-      .section-stage {
-        left: 24px;
-        right: 24px;
-        top: 90px;
+      .bottom-socials {
+        left: 28px;
         bottom: 24px;
       }
-      .side-indicator {
-        right: 18px;
+      .bottom-pagination {
+        right: 28px;
+        bottom: 24px;
       }
     }
 
     @media (max-width: 768px) {
-      /* Mobile Viewport Sizing & Vignette */
-      .ui-overlay {
-        padding: 12px;
+      .master-layout {
+        padding: 18px 20px;
       }
 
-      /* Luminous softened vignette: reveals zoomed underlying video with maximum clarity */
       .vignette {
-        background: radial-gradient(circle at 50% 45%, rgba(15, 16, 23, 0.04) 0%, rgba(15, 16, 23, 0.62) 85%);
-      }
-
-      /* Hide side indicator on mobile */
-      .side-indicator {
-        display: none !important;
-      }
-
-      /* Show mobile stage badge in top nav */
-      .mobile-stage-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: rgba(0, 0, 0, 0.4);
-        border: 1px solid var(--primary-yellow);
-        padding: 3px 8px;
-        border-radius: 6px;
-        box-shadow: 0 0 10px var(--primary-yellow-glow);
-      }
-
-      /* Sleek Transparent Frosted Glass Mobile Navigation */
-      .nav-bar {
-        flex-wrap: wrap;
-        gap: 6px;
-        background: rgba(15, 17, 26, 0.4);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        padding: 8px 12px;
-        border-radius: 10px;
-        border: 1px solid rgba(255, 204, 0, 0.3);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 204, 0, 0.12);
-      }
-
-      .brand-box {
-        font-size: 13px;
-        padding: 2px 5px;
-        border-width: 2px;
-      }
-
-      .brand-name {
-        font-size: 12px;
-        letter-spacing: 1px;
-      }
-
-      .brand-role {
-        font-size: 8px;
-      }
-
-      .nav-actions {
-        display: none !important;
+        background: linear-gradient(180deg, 
+          rgba(8, 10, 15, 0.85) 0%, 
+          rgba(8, 10, 15, 0.3) 40%, 
+          rgba(8, 10, 15, 0.9) 100%
+        );
       }
 
       .nav-links {
-        width: 100%;
-        gap: 6px;
-        font-size: 10px;
-        letter-spacing: 1.2px;
-        justify-content: space-between;
-        padding-top: 6px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .nav-links a {
-        padding: 3px 6px;
-        border-radius: 4px;
-      }
-
-      .nav-links a.active {
-        background: rgba(255, 204, 0, 0.2);
-        color: var(--primary-yellow);
-        text-shadow: 0 0 10px var(--primary-yellow);
-      }
-
-      .nav-links a.active::after {
-        display: none;
-      }
-
-      /* Mobile Section Stage Positioning */
-      .section-stage {
-        left: 12px;
-        right: 12px;
-        top: 92px;
-        bottom: 12px;
-        align-items: flex-end;
-        justify-content: center;
-      }
-
-      /* 100% Transparent Hero Container: lets the underlying video shine directly through! */
-      .hero-main {
-        max-width: 100%;
-        margin-bottom: 0;
-        width: 100%;
-        background: transparent !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-        border: none !important;
-        border-radius: 0 !important;
-        padding: 0 !important;
-        box-shadow: none !important;
-      }
-
-      .hero-badge {
+        gap: 16px;
         font-size: 12px;
+      }
+
+      .hero-content-wrapper {
+        left: 20px;
+        right: 20px;
+        top: auto;
+        bottom: 75px;
+        transform: none;
+      }
+
+      .hero-lead {
+        font-size: 16px;
         letter-spacing: 2px;
-        margin-bottom: 2px;
-        color: var(--primary-yellow);
-        text-shadow: 0 2px 10px rgba(0,0,0,0.95), 0 0 12px var(--primary-yellow-glow);
       }
 
-      .hero-title-solid {
-        font-size: clamp(36px, 10.5vw, 52px);
-        line-height: 0.9;
-        text-shadow: 0 4px 18px rgba(0,0,0,0.95), 0 0 24px var(--primary-yellow-glow);
+      .hero-title {
+        font-size: clamp(38px, 10.5vw, 54px);
+        margin-bottom: 12px;
       }
 
-      .hero-title-stroke {
-        font-size: clamp(36px, 10.5vw, 52px);
-        line-height: 0.9;
-        -webkit-text-stroke: 1.8px var(--primary-yellow);
-        margin-bottom: 8px;
-        filter: drop-shadow(0 4px 14px rgba(0,0,0,0.95)) drop-shadow(0 0 10px var(--primary-yellow-glow));
-      }
-
-      .hero-submeta {
-        font-size: 10px;
-        margin-bottom: 10px;
-        line-height: 1.35;
-        background: rgba(0, 0, 0, 0.4);
-        padding: 5px 9px;
-        border-radius: 5px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        width: fit-content;
+      .hero-desc {
+        padding-left: 14px;
+        font-size: 12px;
+        line-height: 1.55;
+        margin-bottom: 18px;
         max-width: 100%;
-        text-shadow: 0 2px 6px rgba(0,0,0,0.95);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
       }
 
       .hero-actions {
-        gap: 8px;
-        margin-top: 8px;
+        gap: 10px;
+        margin-bottom: 16px;
       }
 
-      .btn-action-primary {
-        padding: 10px 16px;
-        font-size: 11px;
-        letter-spacing: 1.2px;
+      .btn-solid, .btn-outline {
+        padding: 10px 18px;
+        font-size: 12px;
         flex: 1;
-        justify-content: center;
-        background: rgba(15, 16, 23, 0.5);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 2px solid var(--primary-yellow);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), 0 0 12px rgba(255, 204, 0, 0.25);
       }
 
-      .btn-action-icon {
-        width: 38px;
-        height: 38px;
-        background: rgba(15, 16, 23, 0.5);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.25);
+      .hero-playback {
+        display: none;
       }
 
-      /* Holographic Transparent Mobile Tech Telemetry Badge */
-      .mobile-tech-badge {
-        display: block;
-        margin-top: 10px;
-        padding: 9px 12px;
-        background: transparent !important;
-        border: 1px solid rgba(255, 204, 0, 0.38);
-        border-radius: 8px;
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
-        box-shadow: inset 0 0 14px rgba(255, 204, 0, 0.06), 0 0 16px rgba(255, 204, 0, 0.15);
+      .bottom-socials {
+        left: 20px;
+        bottom: 20px;
+        flex-direction: row;
+        gap: 20px;
       }
 
-      /* Mobile 2-Column Transparent Holographic Skills Grid */
-      .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-        margin-top: 8px;
-        max-width: 100%;
-      }
-
-      /* Pure Transparent Skill Cards */
-      .skill-card {
-        padding: 8px 10px;
-        border-radius: 8px;
-        background: transparent !important;
-        border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        box-shadow: inset 0 0 14px rgba(255, 204, 0, 0.04), 0 4px 14px rgba(0, 0, 0, 0.4) !important;
-        backdrop-filter: blur(3px);
-        -webkit-backdrop-filter: blur(3px);
-        transition: transform 0.2s ease, border-color 0.2s ease;
-      }
-
-      .skill-card:active {
-        transform: scale(0.97);
-        border-color: var(--tech-color, var(--primary-yellow)) !important;
-        box-shadow: inset 0 0 18px var(--tech-glow, rgba(255, 204, 0, 0.2)), 0 0 15px var(--tech-color, var(--primary-yellow)) !important;
-      }
-
-      .skill-card-top {
-        margin-bottom: 5px;
-      }
-
-      .skill-icon-box {
-        width: 30px;
-        height: 30px;
-        border-radius: 6px;
-        background: rgba(0, 0, 0, 0.4);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-
-      .skill-icon-box svg {
-        width: 18px;
-        height: 18px;
-      }
-
-      .skill-pct {
-        font-size: 8.5px;
-        padding: 1px 5px;
-        background: rgba(0, 0, 0, 0.55);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        text-shadow: 0 0 8px currentColor;
-      }
-
-      .skill-card-name {
-        font-size: 12px;
-        margin-bottom: 2px;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
-      }
-
-      .skill-card-sub {
-        font-size: 8.5px;
-        color: rgba(255, 255, 255, 0.82);
-        margin-bottom: 5px;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.95);
-      }
-
-      .skill-meter-bg {
-        height: 3px;
-        background: rgba(255, 255, 255, 0.2);
-      }
-
-      /* Mobile Contact Items Transparent Styling */
-      .contact-card-list {
-        gap: 8px;
-        margin-top: 10px;
-        max-width: 100%;
-      }
-
-      .contact-item {
-        padding: 11px 14px;
-        gap: 12px;
-        border-radius: 8px;
-        background: transparent !important;
-        border: 1px solid rgba(255, 204, 0, 0.35);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
-        box-shadow: inset 0 0 12px rgba(255, 204, 0, 0.05), 0 4px 14px rgba(0, 0, 0, 0.4);
-      }
-
-      .contact-val {
-        font-size: 12px;
-        word-break: break-all;
-        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
-      }
-
-      .scroll-hint {
-        display: none !important;
+      .bottom-pagination {
+        right: 20px;
+        bottom: 20px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Cinema Viewfinder HUD Overlay (Inspired by AI-Native Filmmaking Platforms) -->
-  <div class="cinema-hud" id="cinema-hud">
-    <div class="hud-corner hud-tl"></div>
-    <div class="hud-corner hud-tr"></div>
-    <div class="hud-corner hud-bl"></div>
-    <div class="hud-corner hud-br"></div>
-
-    <div class="hud-header">
-      <div class="hud-rec">
-        <span class="hud-rec-dot"></span>
-        <span>REC [8K RAW]</span>
-      </div>
-      <div class="hud-tc" id="hud-timecode">TC 00:00:00:00</div>
-      <div>24.000 FPS // 180°</div>
-    </div>
-
-    <div class="hud-footer">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <div class="hud-audio-bars">
-          <div class="hud-bar"></div>
-          <div class="hud-bar"></div>
-          <div class="hud-bar"></div>
-          <div class="hud-bar"></div>
-          <div class="hud-bar"></div>
-        </div>
-        <span>AUDIO CH1/CH2</span>
-      </div>
-      <div>[ 2.39 : 1 ANAMORPHIC ]</div>
-      <div>AI PLATFORM DIRECTING // GK-01</div>
-    </div>
-  </div>
-
-  <!-- Fullscreen AI-Native Filmmaking Promo Intro Overlay -->
-  <div class="cinema-intro-overlay" id="cinema-intro-overlay">
-    <div class="anamorphic-flare"></div>
-    <div class="intro-card">
-      <div class="intro-studio-tag">
-        <span>IMPACT FRAMES // AI-NATIVE STUDIO PRESENTATION</span>
-      </div>
-      <h1 class="intro-main-title">
-        GULSHAN
-        <span>KUMAR</span>
-      </h1>
-      <p class="intro-sub">
-        AI-NATIVE BACKEND ARCHITECT & DISTRIBUTED SYSTEMS DIRECTOR
-      </p>
-
-      <div class="intro-pills">
-        <span class="intro-pill">✦ AUTONOMOUS AI PIPELINES</span>
-        <span class="intro-pill">⚡ HIGH CONCURRENCY BACKEND</span>
-        <span class="intro-pill">● ENTERPRISE CLUSTERING</span>
-      </div>
-
-      <div class="intro-progress-box">
-        <div class="intro-progress-labels">
-          <span>NEURAL RENDER CORE</span>
-          <span id="intro-progress-pct">SYSTEM READY [100%]</span>
-        </div>
-        <div class="intro-progress-bar-bg">
-          <div class="intro-progress-bar-fill" id="intro-progress-fill"></div>
-        </div>
-      </div>
-
-      <div class="intro-actions">
-        <button class="intro-btn-action" onclick="dismissIntro()">
-          <span>ENTER EXPERIENCE</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-        </button>
-        <button class="intro-btn-skip" onclick="dismissIntro()">
-          SKIP INTRO
-        </button>
-      </div>
-    </div>
-  </div>
-
   <!-- Background Video Frame Scroll Canvas -->
   <div id="canvas-container">
     <canvas id="canvas"></canvas>
   </div>
 
-  <!-- Cinematic Contrast Vignette -->
+  <!-- Left Cinematic Dark Vignette -->
   <div class="vignette"></div>
 
-  <!-- Master UI Overlay -->
-  <div class="ui-overlay">
+  <!-- Master Fixed UI Layout -->
+  <div class="master-layout">
     
     <!-- Top Navigation Bar -->
     <header class="nav-bar">
-      <!-- Central NatGeo Style Brand Box -->
-      <a class="brand-logo" href="#">
-        <div class="brand-box">GK</div>
-        <div class="brand-text">
-          <span class="brand-name">GULSHAN KUMAR</span>
-          <span class="brand-role">AI & BACKEND ARCHITECT</span>
-        </div>
-      </a>
+      <a class="nav-brand" href="#">Home</a>
 
-      <!-- Replay Intro Button -->
-      <button class="nav-btn-intro" onclick="playPromoIntro()" title="Watch AI Cinema Promo Intro">
-        <span>↺ INTRO</span>
-      </button>
-
-      <!-- Mobile Stage Badge Indicator -->
-      <div class="mobile-stage-badge" id="mobile-indicator">
-        <span style="width:6px; height:6px; border-radius:50%; background:#00ff88; display:inline-block; box-shadow:0 0 8px #00ff88;"></span>
-        <span id="mobile-counter-text">01 / 04</span>
-      </div>
-
-      <!-- Navigation Links -->
       <ul class="nav-links">
-        <li><a class="nav-link active" data-section="0">EXPLORE</a></li>
-        <li><a class="nav-link" data-section="1">SKILLS</a></li>
-        <li><a class="nav-link" data-section="2">SYSTEMS</a></li>
-        <li><a class="nav-link" data-section="3">CONTACT</a></li>
+        <li><a class="nav-item active" data-stage="0">Explore</a></li>
+        <li><a class="nav-item" data-stage="1">Stack</a></li>
+        <li><a class="nav-item" data-stage="2">Engines</a></li>
+        <li><a class="nav-item" data-stage="3">Contact</a></li>
       </ul>
-
-      <!-- Desktop Nav Icons -->
-      <div class="nav-actions">
-        <button class="nav-btn-icon" title="Search Stack" onclick="scrollToStage(1)">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </button>
-        <a class="nav-btn-icon" title="GitHub" href="https://github.com/gulxn2006/portfolio" target="_blank">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-        </a>
-        <a class="nav-btn-icon" title="LinkedIn" href="https://linkedin.com" target="_blank">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-        </a>
-      </div>
     </header>
 
-    <!-- SECTION 1 (STAGE 0): HERO / INTRO -->
-    <div class="section-stage active" id="stage-0">
-      <div class="hero-main">
-        <span class="hero-badge">✦ AI-NATIVE PLATFORM ARCHITECT</span>
-        <h1 class="hero-title-solid">GULSHAN</h1>
-        <h2 class="hero-title-stroke">KUMAR</h2>
-        
-        <div class="hero-submeta">
-          <span class="status-dot"></span>
-          <span>ONLINE // ARCHITECTING HIGH-CONCURRENCY BACKENDS & AI AGENTS</span>
-        </div>
+    <!-- Left Hero Editorial Content Block (Matches Into The Wild Reference) -->
+    <main class="hero-content-wrapper">
+      <div class="hero-lead" id="hero-lead">BACKEND ARCHITECT</div>
+      <h1 class="hero-title" id="hero-title">GULSHAN KUMAR</h1>
+      
+      <p class="hero-desc" id="hero-desc">
+        Architecting high-concurrency systems, ultra-low latency APIs, and autonomous AI pipelines. Specializing in Laravel, MySQL optimization, and distributed cloud infrastructure with sub-20ms P99 responses.
+      </p>
 
-        <div class="hero-actions">
-          <a class="btn-action-primary" href="mailto:gulxn06@gmail.com">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            CONTACT GULSHAN
-          </a>
-          <button class="btn-action-primary" onclick="playPromoIntro()" style="background:rgba(255,204,0,0.12); border-color:var(--primary-yellow); color:var(--primary-yellow);" title="Play Cinematic Promo Intro">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            WATCH INTRO
-          </button>
-          <a class="btn-action-icon" title="View GitHub" href="https://github.com/gulxn2006/portfolio" target="_blank">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          </a>
-        </div>
+      <div class="hero-actions">
+        <a class="btn-solid" id="btn-primary" href="mailto:gulxn06@gmail.com">Contact Gulshan</a>
+        <a class="btn-outline" id="btn-secondary" href="https://github.com/gulxn2006/portfolio" target="_blank">View GitHub</a>
+      </div>
 
-        <!-- Mobile Floating Tech Telemetry Chip -->
-        <div class="mobile-tech-badge">
-          <div class="mobile-tech-badge-title">
-            <span>LARAVEL & MYSQL 8.0</span>
-            <span style="color:#00ff88;">⚡ 18MS P99</span>
-          </div>
-          <div class="mobile-tech-badge-sub">
-            <span>HIGH-CONCURRENCY ARCHITECTURE</span>
-            <span>•</span>
-            <span style="color:var(--primary-yellow);">2.4K REQ/S</span>
+      <!-- Play / Scrubber Controls -->
+      <div class="hero-playback">
+        <button class="btn-play-toggle" id="btn-play" title="Auto Play Frame Scroll">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+        </button>
+        <div class="scrub-line-container" id="scrub-line-container" title="Drag or Click to Scrub">
+          <div class="scrub-track">
+            <div class="scrub-progress" id="scrub-progress"></div>
+            <div class="scrub-thumb" id="scrub-thumb"></div>
           </div>
         </div>
       </div>
+    </main>
 
-      <!-- Right Desktop Preview Cards -->
-      <div class="preview-cards-container">
-        <div class="preview-card" onclick="scrollToStage(1)">
-          <div class="card-header-row">
-            <div class="card-top-tag">REST & GRAPHQL APIS // SYSTEM CORE</div>
-            <span class="card-metric-badge">⚡ 18MS P99</span>
-          </div>
-
-          <div class="card-tech-visual">
-            <svg viewBox="0 0 100 50" width="100" height="50" fill="none">
-              <rect x="15" y="8" width="70" height="10" rx="3" fill="rgba(255,45,32,0.15)" stroke="#ff2d20" stroke-width="1.5"/>
-              <circle cx="23" cy="13" r="2" fill="#00ff88"/>
-              <circle cx="30" cy="13" r="2" fill="#ffcc00"/>
-              <line x1="40" y1="13" x2="75" y2="13" stroke="#ff2d20" stroke-width="1.2" stroke-dasharray="3 2"/>
-
-              <rect x="15" y="22" width="70" height="10" rx="3" fill="rgba(119,123,180,0.15)" stroke="#777bb4" stroke-width="1.5"/>
-              <circle cx="23" cy="27" r="2" fill="#00ff88"/>
-              <circle cx="30" cy="27" r="2" fill="#ffcc00"/>
-              <line x1="40" y1="27" x2="75" y2="27" stroke="#777bb4" stroke-width="1.2" stroke-dasharray="3 2"/>
-
-              <rect x="15" y="36" width="70" height="10" rx="3" fill="rgba(255,204,0,0.15)" stroke="#ffcc00" stroke-width="1.5"/>
-              <circle cx="23" cy="41" r="2" fill="#00ff88"/>
-              <circle cx="30" cy="41" r="2" fill="#ffcc00"/>
-              <line x1="40" y1="41" x2="75" y2="41" stroke="#ffcc00" stroke-width="1.2" stroke-dasharray="3 2"/>
-            </svg>
-          </div>
-
-          <div class="card-bottom-content">
-            <div class="card-title">LARAVEL &<br>PHP CORE</div>
-            <div class="card-play-btn">▶</div>
-          </div>
-        </div>
-
-        <div class="preview-card" onclick="scrollToStage(2)">
-          <div class="card-header-row">
-            <div class="card-top-tag">HIGH THROUGHPUT CLUSTER // SCHEMAS</div>
-            <span class="card-metric-badge">● 99.99%</span>
-          </div>
-
-          <div class="card-tech-visual">
-            <svg viewBox="0 0 100 50" width="100" height="50" fill="none">
-              <ellipse cx="50" cy="12" rx="28" ry="6" fill="rgba(0,117,143,0.3)" stroke="#00758f" stroke-width="1.6"/>
-              <path d="M22 12v12c0 3.3 12.5 6 28 6s28-2.7 28-6V12" stroke="#00758f" stroke-width="1.6"/>
-              <path d="M22 24v12c0 3.3 12.5 6 28 6s28-2.7 28-6V24" stroke="#ffcc00" stroke-width="1.6"/>
-              <ellipse cx="50" cy="24" rx="20" ry="4" stroke="#00ff88" stroke-width="1.4" stroke-dasharray="4 2"/>
-            </svg>
-          </div>
-
-          <div class="card-bottom-content">
-            <div class="card-title">MYSQL &<br>INDEXING</div>
-            <div class="card-play-btn">▶</div>
-          </div>
-        </div>
-      </div>
+    <!-- Bottom Left Vertical Social Icons -->
+    <div class="bottom-socials">
+      <a class="social-icon-btn" href="https://github.com/gulxn2006/portfolio" target="_blank" title="GitHub">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
+      <a class="social-icon-btn" href="https://linkedin.com/in/gulshan-kumar" target="_blank" title="LinkedIn">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      </a>
+      <a class="social-icon-btn" href="mailto:gulxn06@gmail.com" title="Email: gulxn06@gmail.com">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+      </a>
     </div>
 
-    <!-- SECTION 2 (STAGE 1): VISUAL SKILLS MATRIX -->
-    <div class="section-stage" id="stage-1">
-      <div class="hero-main">
-        <span class="hero-badge">✦ CORE ARSENAL</span>
-        <h1 class="hero-title-solid">STACK &</h1>
-        <h2 class="hero-title-stroke">SYSTEMS</h2>
-        
-        <div class="hero-submeta">
-          <span class="status-dot"></span>
-          <span>ENTERPRISE BACKENDS • AI PIPELINES • DISTRIBUTED DATABASES</span>
-        </div>
-
-        <!-- 8 Visual Tech Cards with SVG Logos & Meters -->
-        <div class="skills-grid">
-          
-          <!-- 1. PHP -->
-          <div class="skill-card tech-php">
-            <div class="skill-card-top">
-              <div class="skill-icon-box">
-                <svg viewBox="0 0 128 128" width="24" height="24">
-                  <ellipse cx="64" cy="64" rx="58" ry="34" fill="#777bb4"/>
-                  <path d="M43.6 74.8h-7.2l5.6-21.6h12.8c5.4 0 8.8 2.8 7.4 8.2-1.3 5-5.8 8-11 8h-5.2l-2.4 5.4zm3.8-9.4h4.4c2.8 0 5-1.4 5.6-3.8.6-2.4-.8-3.8-3.6-3.8h-4.2l-2.2 7.6zm22.4 9.4h-7.2l9.6-37h7.2l-3.8 14.6h.4c2.4-3.2 5.8-4.8 9.4-4.8 6.4 0 9.2 4.2 7.8 9.8l-4.6 17.4h-7.2l4.4-16.6c.8-3-1-4.8-4-4.8-3.4 0-6 2.6-7.2 7.2l-4.4 14.2h-2.4zm31.8 0h-7.2l5.6-21.6h12.8c5.4 0 8.8 2.8 7.4 8.2-1.3 5-5.8 8-11 8h-5.2l-2.4 5.4zm3.8-9.4h4.4c2.8 0 5-1.4 5.6-3.8.6-2.4-.8-3.8-3.6-3.8h-4.2l-2.2 7.6z" fill="#fff"/>
-                </svg>
-              </div>
-              <span class="skill-pct">96%</span>
-            </div>
-            <div>
-              <div class="skill-card-name">PHP 8.x</div>
-              <div class="skill-card-sub">OOP • MVC Architecture</div>
-              <div class="skill-meter-bg"><div class="skill-meter-fill" style="width: 96%"></div></div>
-            </div>
-          </div>
-
-          <!-- 2. LARAVEL -->
-          <div class="skill-card tech-laravel">
-            <div class="skill-card-top">
-              <div class="skill-icon-box">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
-                  <path d="M2.5 7.5L12 2l9.5 5.5v11L12 24l-9.5-5.5v-11z" fill="rgba(255,45,32,0.2)" stroke="#ff2d20" stroke-width="1.6"/>
-                  <path d="M7 9l5-3 5 3v6l-5 3-5-3V9z" fill="#ff2d20"/>
-                  <path d="M12 6v6m0 0l5 3m-5-3l-5 3" stroke="#fff" stroke-width="1.2"/>
-                </svg>
-              </div>
-              <span class="skill-pct">98%</span>
-            </div>
-            <div>
-              <div class="skill-card-name">LARAVEL</div>
-              <div class="skill-card-sub">Eloquent • Queues • REST</div>
-              <div class="skill-meter-bg"><div class="skill-meter-fill" style="width: 98%"></div></div>
-            </div>
-          </div>
-
-          <!-- 3. MYSQL -->
-          <div class="skill-card tech-mysql">
-            <div class="skill-card-top">
-              <div class="skill-icon-box">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#00758f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <ellipse cx="12" cy="5" rx="9" ry="3" fill="rgba(0,117,143,0.25)"/>
-                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
-                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
-                  <path d="M15 16l3 2 3-2" stroke="#f29111" stroke-width="2"/>
-                </svg>
-              </div>
-              <span class="skill-pct">94%</span>
-            </div>
-            <div>
-              <div class="skill-card-name">MYSQL</div>
-              <div class="skill-card-sub">Indexing • Replication</div>
-              <div class="skill-meter-bg"><div class="skill-meter-fill" style="width: 94%"></div></div>
-            </div>
-          </div>
-
-          <!-- 4. ANTIGRAVITY -->
-          <div class="skill-card tech-antigravity">
-            <div class="skill-card-top">
-              <div class="skill-icon-box">
-                <svg viewBox="0 0 24 24" width="23" height="23" fill="none">
-                  <circle cx="12" cy="12" r="9" stroke="#ffcc00" stroke-width="1.8" stroke-dasharray="3 3"/>
-                  <circle cx="12" cy="12" r="4.5" fill="rgba(255,204,0,0.25)" stroke="#ffcc00" stroke-width="2"/>
-                  <circle cx="12" cy="12" r="2" fill="#fff"/>
-                  <ellipse cx="12" cy="12" rx="10" ry="4" stroke="#a855f7" stroke-width="1.5" transform="rotate(-30 12 12)"/>
-                </svg>
-              </div>
-              <span class="skill-pct">95%</span>
-            </div>
-            <div>
-              <div class="skill-card-name">ANTIGRAVITY</div>
-              <div class="skill-card-sub">Autonomous AI Pipelines</div>
-              <div class="skill-meter-bg"><div class="skill-meter-fill" style="width: 95%"></div></div>
-            </div>
-          </div>
-
-          <!-- 5. CODEX -->
-          <div class="skill-card tech-codex">
-            <div class="skill-card-top">
-              <div class="skill-icon-box">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
-                  <path d="M12 2l8.5 5v10L12 22l-8.5-5V7L12 2z" stroke="#10a37f" stroke-width="1.8" fill="rgba(16,163,127,0.18)"/>
-                  <path d="M8 10l-3 2 3 2m8-4l3 2-3 2m-5-3l-2 6" stroke="#10a37f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <span class="skill-pct">92%</span>
-            </div>
-            <div>
-              <div class="skill-card-name">CODEX</div>
-              <div class="skill-card-sub">Code Intelligence & CLI</div>
-              <div class="skill-meter-bg"><div class="skill-meter-fill" style="width: 92%"></div></div>
-            </div>
-          </div>
-
-          <!-- 6. BOOTSTRAP -->
-          <div class="skill-card tech-bootstrap">
-            <div class="skill-card-top">
-              <div class="skill-icon-box">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
-                  <rect x="2" y="2" width="20" height="20" rx="5" fill="rgba(144,99,205,0.22)" stroke="#9063cd" stroke-width="1.8"/>
-                  <path d="M8 6.5h4.2c1.7 0 2.8.8 2.8 2.1 0 1-.6 1.7-1.5 1.9v.1c1.2.2 1.9 1 1.9 2.2 0 1.5-1.3 2.5-3.2 2.5H8V6.5zm2.4 3.4h1.7c.7 0 1.1-.4 1.1-.9s-.4-.9-1.1-.9h-1.7v1.8zm0 3.7h2c.8 0 1.3-.4 1.3-1s-.5-1-1.3-1h-2v2z" fill="#fff"/>
-                </svg>
-              </div>
-              <span class="skill-pct">93%</span>
-            </div>
-            <div>
-              <div class="skill-card-name">BOOTSTRAP</div>
-              <div class="skill-card-sub">Responsive Layouts</div>
-              <div class="skill-meter-bg"><div class="skill-meter-fill" style="width: 93%"></div></div>
-            </div>
-          </div>
-
-          <!-- 7. HTML5 -->
-          <div class="skill-card tech-html">
-            <div class="skill-card-top">
-              <div class="skill-icon-box">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
-                  <path d="M3 2l1.6 18 7.4 2 7.4-2L21 2H3z" fill="rgba(227,79,38,0.2)" stroke="#e34f26" stroke-width="1.6"/>
-                  <path d="M12 4.5v15.2l5.3-1.4 1.2-13.8H12z" fill="rgba(227,79,38,0.3)"/>
-                  <path d="M7 7.5h10M7.3 11h9.4l-.5 5.5-4.2 1.2-4.2-1.2-.3-3.2" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <span class="skill-pct">96%</span>
-            </div>
-            <div>
-              <div class="skill-card-name">HTML5</div>
-              <div class="skill-card-sub">Semantic Web & SEO</div>
-              <div class="skill-meter-bg"><div class="skill-meter-fill" style="width: 96%"></div></div>
-            </div>
-          </div>
-
-          <!-- 8. CSS3 -->
-          <div class="skill-card tech-css">
-            <div class="skill-card-top">
-              <div class="skill-icon-box">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
-                  <path d="M3 2l1.6 18 7.4 2 7.4-2L21 2H3z" fill="rgba(33,150,243,0.2)" stroke="#2196f3" stroke-width="1.6"/>
-                  <path d="M12 4.5v15.2l5.3-1.4 1.2-13.8H12z" fill="rgba(33,150,243,0.3)"/>
-                  <path d="M17 7.5H7.2l.3 3.5h9.2l-.6 6-4.1 1.2-4.1-1.2-.2-2" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <span class="skill-pct">94%</span>
-            </div>
-            <div>
-              <div class="skill-card-name">CSS3</div>
-              <div class="skill-card-sub">Flexbox • Grid • Canvas</div>
-              <div class="skill-meter-bg"><div class="skill-meter-fill" style="width: 94%"></div></div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Mobile Floating Tech Telemetry Chip Stage 1 -->
-        <div class="mobile-tech-badge">
-          <div class="mobile-tech-badge-title">
-            <span>ANTIGRAVITY & CODEX</span>
-            <span style="color:#00ff88;">✦ AGENTIC AI</span>
-          </div>
-          <div class="mobile-tech-badge-sub">
-            <span>AUTONOMOUS PIPELINE</span>
-            <span>•</span>
-            <span style="color:var(--primary-yellow);">8 CORE SKILLS ACTIVE</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Preview Cards Stage 1 -->
-      <div class="preview-cards-container">
-        <div class="preview-card" onclick="scrollToStage(2)">
-          <div class="card-header-row">
-            <div class="card-top-tag">AUTONOMOUS RUNTIME // AGY WORKFLOWS</div>
-            <span class="card-metric-badge">✦ AGENTIC AI</span>
-          </div>
-
-          <div class="card-tech-visual">
-            <svg viewBox="0 0 100 50" width="100" height="50" fill="none">
-              <ellipse cx="50" cy="25" rx="36" ry="12" stroke="#ffcc00" stroke-width="1.4" stroke-dasharray="5 3"/>
-              <ellipse cx="50" cy="25" rx="20" ry="18" stroke="#a855f7" stroke-width="1.4" transform="rotate(45 50 25)"/>
-              <circle cx="50" cy="25" r="7" fill="rgba(255,204,0,0.3)" stroke="#ffcc00" stroke-width="2"/>
-              <circle cx="50" cy="25" r="3" fill="#fff"/>
-              <circle cx="28" cy="18" r="2.5" fill="#00ff88"/>
-              <circle cx="72" cy="32" r="2.5" fill="#a855f7"/>
-            </svg>
-          </div>
-
-          <div class="card-bottom-content">
-            <div class="card-title">ANTIGRAVITY<br>& CODEX</div>
-            <div class="card-play-btn">▶</div>
-          </div>
-        </div>
-
-        <div class="preview-card" onclick="scrollToStage(2)">
-          <div class="card-header-row">
-            <div class="card-top-tag">HIGH CONCURRENCY // BENCHMARKED</div>
-            <span class="card-metric-badge">⚡ 2.4K REQ/S</span>
-          </div>
-
-          <div class="card-tech-visual">
-            <svg viewBox="0 0 100 50" width="100" height="50" fill="none">
-              <path d="M12 40 L28 32 L44 36 L60 16 L76 22 L88 10" stroke="#ffcc00" stroke-width="2.2" stroke-linecap="round"/>
-              <circle cx="60" cy="16" r="3.5" fill="#ffcc00" stroke="#0f1017" stroke-width="1.5"/>
-              <circle cx="88" cy="10" r="3.5" fill="#00ff88" stroke="#0f1017" stroke-width="1.5"/>
-            </svg>
-          </div>
-
-          <div class="card-bottom-content">
-            <div class="card-title">ENTERPRISE<br>THROUGHPUT</div>
-            <div class="card-play-btn">▶</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECTION 3 (STAGE 2): PRODUCTION SYSTEMS -->
-    <div class="section-stage" id="stage-2">
-      <div class="hero-main">
-        <span class="hero-badge">✦ HIGH-SCALE ARCHITECTURE</span>
-        <h1 class="hero-title-solid">BACKEND</h1>
-        <h2 class="hero-title-stroke">ENGINES</h2>
-        
-        <div class="hero-submeta">
-          <span class="status-dot"></span>
-          <span>SUB-20MS LATENCY • FAULT-TOLERANT CLUSTERS • 99.99% UPTIME</span>
-        </div>
-
-        <div class="hero-actions">
-          <a class="btn-action-primary" href="#contact" onclick="scrollToStage(3); return false;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-            EXPLORE ARCHITECTURE
-          </a>
-        </div>
-
-        <!-- Mobile Floating Tech Telemetry Chip Stage 2 -->
-        <div class="mobile-tech-badge">
-          <div class="mobile-tech-badge-title">
-            <span>REDIS & CLOUD CLUSTER</span>
-            <span style="color:#00ff88;">● 99.99% UPTIME</span>
-          </div>
-          <div class="mobile-tech-badge-sub">
-            <span>ASYNC QUEUE WORKERS</span>
-            <span>•</span>
-            <span style="color:var(--primary-yellow);">&lt; 5MS DELAY</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="preview-cards-container">
-        <div class="preview-card" onclick="scrollToStage(3)">
-          <div class="card-header-row">
-            <div class="card-top-tag">REDIS CACHE & QUEUES // CLUSTERING</div>
-            <span class="card-metric-badge">⚡ &lt; 5MS DELAY</span>
-          </div>
-
-          <div class="card-tech-visual">
-            <svg viewBox="0 0 100 50" width="100" height="50" fill="none">
-              <line x1="12" y1="25" x2="88" y2="25" stroke="rgba(255,255,255,0.2)" stroke-width="3" stroke-linecap="round"/>
-              <rect x="20" y="18" width="14" height="14" rx="3" fill="#ff2d20" stroke="#ff2d20" stroke-width="1.5"/>
-              <rect x="42" y="18" width="14" height="14" rx="3" fill="#ffcc00" stroke="#ffcc00" stroke-width="1.5"/>
-              <rect x="64" y="18" width="14" height="14" rx="3" fill="#00ff88" stroke="#00ff88" stroke-width="1.5"/>
-              <path d="M84 21l6 4-6 4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-
-          <div class="card-bottom-content">
-            <div class="card-title">ASYNC QUEUE<br>PIPELINES</div>
-            <div class="card-play-btn">▶</div>
-          </div>
-        </div>
-
-        <div class="preview-card" onclick="scrollToStage(3)">
-          <div class="card-header-row">
-            <div class="card-top-tag">REALTIME DATA STREAMS // ZERO DOWNTIME</div>
-            <span class="card-metric-badge">● 99.99% UP</span>
-          </div>
-
-          <div class="card-tech-visual">
-            <svg viewBox="0 0 100 50" width="100" height="50" fill="none">
-              <circle cx="25" cy="18" r="7" fill="rgba(0,117,143,0.3)" stroke="#00758f" stroke-width="1.8"/>
-              <circle cx="50" cy="34" r="9" fill="rgba(255,204,0,0.25)" stroke="#ffcc00" stroke-width="2"/>
-              <circle cx="75" cy="18" r="7" fill="rgba(0,255,136,0.3)" stroke="#00ff88" stroke-width="1.8"/>
-              <line x1="25" y1="18" x2="50" y2="34" stroke="#ffcc00" stroke-width="1.4" stroke-dasharray="3 2"/>
-              <line x1="50" y1="34" x2="75" y2="18" stroke="#00ff88" stroke-width="1.4" stroke-dasharray="3 2"/>
-            </svg>
-          </div>
-
-          <div class="card-bottom-content">
-            <div class="card-title">PRODUCTION<br>SYSTEMS</div>
-            <div class="card-play-btn">▶</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECTION 4 (STAGE 3): CONTACT & CONNECT -->
-    <div class="section-stage" id="stage-3">
-      <div class="hero-main">
-        <span class="hero-badge">✦ INITIATE COLLABORATION</span>
-        <h1 class="hero-title-solid">LET'S</h1>
-        <h2 class="hero-title-stroke">CONNECT</h2>
-        
-        <div class="hero-submeta">
-          <span class="status-dot"></span>
-          <span>AVAILABLE FOR SENIOR BACKEND & AI PLATFORM ROLES</span>
-        </div>
-
-        <div class="contact-card-list">
-          <a class="contact-item" href="mailto:gulxn06@gmail.com">
-            <span class="contact-icon">✉</span>
-            <div>
-              <div class="contact-label">Direct Email</div>
-              <div class="contact-val">gulxn06@gmail.com</div>
-            </div>
-          </a>
-
-          <a class="contact-item" href="https://linkedin.com/in/gulshan-kumar" target="_blank">
-            <span class="contact-icon">⚡</span>
-            <div>
-              <div class="contact-label">Professional Network</div>
-              <div class="contact-val">linkedin.com/in/gulshan-kumar</div>
-            </div>
-          </a>
-        </div>
-
-        <!-- Mobile Floating Tech Telemetry Chip Stage 3 -->
-        <div class="mobile-tech-badge">
-          <div class="mobile-tech-badge-title">
-            <span>CONNECT // GULSHAN KUMAR</span>
-            <span style="color:#00ff88;">● ONLINE</span>
-          </div>
-          <div class="mobile-tech-badge-sub">
-            <span>gulxn06@gmail.com</span>
-            <span>•</span>
-            <span style="color:var(--primary-yellow);">2026 ACTIVE</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="preview-cards-container">
-        <div class="preview-card" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-          <div class="card-header-row">
-            <div class="card-top-tag">REPLAY EXPERIENCE // HERO JOURNEY</div>
-            <span class="card-metric-badge">▲ TOP</span>
-          </div>
-
-          <div class="card-tech-visual">
-            <svg viewBox="0 0 100 50" width="100" height="50" fill="none">
-              <circle cx="50" cy="25" r="18" stroke="#ffcc00" stroke-width="1.8" stroke-dasharray="4 2"/>
-              <polygon points="50,11 56,25 50,22 44,25" fill="#ffcc00"/>
-              <polygon points="50,39 56,25 50,28 44,25" fill="rgba(255,204,0,0.3)"/>
-              <circle cx="50" cy="25" r="2.5" fill="#fff"/>
-            </svg>
-          </div>
-
-          <div class="card-bottom-content">
-            <div class="card-title">RETURN TO<br>START</div>
-            <div class="card-play-btn">▲</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bottom Left Minimal Scroll Hint (Desktop only) -->
-    <div class="scroll-hint">
-      <div class="scroll-hint-bar"></div>
-      <span>SCROLL OR DRAG TO SCRUB EXPERIENCE</span>
+    <!-- Bottom Right Pagination Dots -->
+    <div class="bottom-pagination">
+      <div class="page-dot active" data-stage="0" title="01 / Explore"></div>
+      <div class="page-dot" data-stage="1" title="02 / Stack"></div>
+      <div class="page-dot" data-stage="2" title="03 / Engines"></div>
+      <div class="page-dot" data-stage="3" title="04 / Contact"></div>
     </div>
 
   </div>
-
-  <!-- Right Vertical Indicator (Desktop only) -->
-  <aside class="side-indicator">
-    <div class="side-indicator-counter" id="indicator-counter">01 / 04</div>
-    <div class="side-indicator-accent">
-      <div class="side-indicator-fill" id="indicator-fill"></div>
-    </div>
-    <div class="side-indicator-text">EXPLORE MORE</div>
-  </aside>
 
   <script>
     (function () {
@@ -2109,29 +602,15 @@
       let lastRenderedIndex = -1;
       let needRedraw = true;
 
-      const stages = [
-        document.getElementById('stage-0'),
-        document.getElementById('stage-1'),
-        document.getElementById('stage-2'),
-        document.getElementById('stage-3')
-      ];
-      const navLinks = document.querySelectorAll('.nav-link');
-      const indicatorCounter = document.getElementById('indicator-counter');
-      const indicatorFill = document.getElementById('indicator-fill');
-      const mobileCounterText = document.getElementById('mobile-counter-text');
-      let activeStageIndex = 0;
-
       function getFrameSrc(index) {
         const frameNum = String(index + 1).padStart(3, '0');
         return `./${frameNum}.png`;
       }
 
-      // ========================================================
-      // STAGGERED QUEUE LOADER (PREVENTS MOBILE RAM/NETWORK CRASH)
-      // ========================================================
+      // Preload frames in background smoothly
       let loadQueue = [];
       let activeLoads = 0;
-      const MAX_CONCURRENT_LOADS = isMobile ? 2 : 5;
+      const MAX_CONCURRENT_LOADS = isMobile ? 3 : 6;
 
       function processQueue() {
         while (activeLoads < MAX_CONCURRENT_LOADS && loadQueue.length > 0) {
@@ -2157,23 +636,20 @@
         }
       }
 
-      // Prioritize first 10 frames for instant load
-      for (let i = 0; i < 10; i++) {
+      // First 12 frames instant load
+      for (let i = 0; i < 12; i++) {
         loadQueue.push(i);
       }
       processQueue();
 
-      // Load remaining frames in background smoothly
       setTimeout(() => {
-        for (let i = 10; i < TOTAL_FRAMES; i++) {
+        for (let i = 12; i < TOTAL_FRAMES; i++) {
           loadQueue.push(i);
         }
         processQueue();
-      }, isMobile ? 350 : 100);
+      }, isMobile ? 300 : 80);
 
-      // ========================================================
-      // CANVAS SIZING WITH MOBILE OPTIMIZATION
-      // ========================================================
+      // Canvas sizing
       function resizeCanvas() {
         const mobile = window.innerWidth < 768;
         const dpr = mobile ? Math.min(window.devicePixelRatio || 1, 1.25) : Math.min(window.devicePixelRatio || 1, 2);
@@ -2203,9 +679,7 @@
         return null;
       }
 
-      // ========================================================
-      // CINEMATIC DRAW: FULL-BLEED IMMERSIVE ZOOM ON MOBILE
-      // ========================================================
+      // Cinematic Draw with Perfect Framing
       function drawFrame(img) {
         if (!img || !img.complete || img.naturalWidth === 0) return;
 
@@ -2218,22 +692,20 @@
         const canvasRatio = cw / ch;
 
         let drawW, drawH, dx, dy;
-
         const mobile = window.innerWidth < 768;
 
         if (mobile) {
-          // BALANCED CINEMATIC FRAMING ON MOBILE (NO CRAZY 500% OVER-ZOOM)
-          // Scale width moderately by 1.25x so ~85% of widescreen is visible
+          // Balanced framing on mobile (no 500% over-zoom)
           drawW = cw * 1.25;
           drawH = drawW / imgRatio;
           dx = (cw - drawW) / 2;
           dy = (ch - drawH) / 2 - 25;
         } else {
-          // DESKTOP CONTAIN (PRESERVE FULL WIDESCREEN FRAME)
+          // Desktop: Shift frame gracefully towards the right like the reference image
           if (canvasRatio > imgRatio) {
             drawH = ch;
             drawW = ch * imgRatio;
-            dx = (cw - drawW) / 2;
+            dx = (cw - drawW) / 2 + (cw * 0.08); // Subtle cinematic right shift
             dy = 0;
           } else {
             drawW = cw;
@@ -2243,51 +715,125 @@
           }
         }
 
-        ctx.fillStyle = '#0f1017';
+        ctx.fillStyle = '#080a0f';
         ctx.fillRect(0, 0, cw, ch);
         ctx.drawImage(img, dx, dy, drawW, drawH);
       }
 
-      function updateUI(progress) {
-        let stageIdx = Math.min(3, Math.floor(progress * 4));
-        if (progress >= 0.96) stageIdx = 3;
-
-        if (stageIdx !== activeStageIndex) {
-          stages.forEach((s, idx) => {
-            if (idx === stageIdx) {
-              s.classList.add('active');
-            } else {
-              s.classList.remove('active');
-            }
-          });
-
-          navLinks.forEach((l, idx) => {
-            if (idx === stageIdx) {
-              l.classList.add('active');
-            } else {
-              l.classList.remove('active');
-            }
-          });
-
-          const counterText = `0${stageIdx + 1} / 04`;
-          if (indicatorCounter) indicatorCounter.textContent = counterText;
-          if (mobileCounterText) mobileCounterText.textContent = counterText;
-          activeStageIndex = stageIdx;
+      // ========================================================
+      // STAGES CONTENT DATA & SPLIT TEXT ANIMATION
+      // ========================================================
+      const STAGES = [
+        {
+          lead: "BACKEND ARCHITECT",
+          title: "GULSHAN KUMAR",
+          desc: "Architecting high-concurrency systems, ultra-low latency APIs, and autonomous AI pipelines. Specializing in Laravel, MySQL optimization, and distributed microservices with sub-20ms P99 responses.",
+          btn1: { text: "Contact Gulshan", href: "mailto:gulxn06@gmail.com", target: "_self" },
+          btn2: { text: "View GitHub", href: "https://github.com/gulxn2006/portfolio", target: "_blank" }
+        },
+        {
+          lead: "TECHNICAL ARSENAL",
+          title: "CORE STACK",
+          desc: "Mastery in enterprise stacks: PHP 8.x, Laravel Framework, MySQL 8.0 indexing, Redis cluster caching, Antigravity AI agents, and resilient GraphQL/REST architectures engineered for scale.",
+          btn1: { text: "Explore Architecture", href: "https://github.com/gulxn2006/portfolio", target: "_blank" },
+          btn2: { text: "Download CV", href: "mailto:gulxn06@gmail.com", target: "_self" }
+        },
+        {
+          lead: "SYSTEM INTEGRITY",
+          title: "BACKEND ENGINES",
+          desc: "High-scale asynchronous queue workers, automated schema clustering, and real-time streaming pipelines delivering sub-20ms P99 latency with 99.99% enterprise uptime guarantees.",
+          btn1: { text: "View Repositories", href: "https://github.com/gulxn2006/portfolio", target: "_blank" },
+          btn2: { text: "System Benchmarks", href: "https://github.com/gulxn2006/portfolio", target: "_blank" }
+        },
+        {
+          lead: "INITIATE COLLABORATION",
+          title: "LET'S CONNECT",
+          desc: "Available for senior backend engineering roles, high-concurrency consulting, and AI-native platform directing. Reach out directly via email to initiate discussion.",
+          btn1: { text: "Email Gulshan", href: "mailto:gulxn06@gmail.com", target: "_self" },
+          btn2: { text: "LinkedIn Profile", href: "https://linkedin.com/in/gulshan-kumar", target: "_blank" }
         }
+      ];
 
-        if (indicatorFill) {
-          indicatorFill.style.height = `${Math.min(100, Math.max(15, progress * 100))}%`;
-        }
+      const heroLead = document.getElementById('hero-lead');
+      const heroTitle = document.getElementById('hero-title');
+      const heroDesc = document.getElementById('hero-desc');
+      const btnPrimary = document.getElementById('btn-primary');
+      const btnSecondary = document.getElementById('btn-secondary');
+      const navItems = document.querySelectorAll('.nav-item');
+      const pageDots = document.querySelectorAll('.page-dot');
+      const scrubProgress = document.getElementById('scrub-progress');
+      const scrubThumb = document.getElementById('scrub-thumb');
+      const btnPlay = document.getElementById('btn-play');
 
-        // Real-time Cinema Viewfinder Timecode in HUD
-        const totalSeconds = progress * 84;
-        const mm = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
-        const ss = String(Math.floor(totalSeconds % 60)).padStart(2, '0');
-        const ff = String(Math.floor((totalSeconds % 1) * 24)).padStart(2, '0');
-        const hudTc = document.getElementById('hud-timecode');
-        if (hudTc) hudTc.textContent = `TC 00:${mm}:${ss}:${ff}`;
+      let currentStageIndex = -1;
+
+      // Ultra-Smooth Kinetic Split Text Animation
+      function applySplitText(element, text) {
+        element.innerHTML = '';
+        const words = text.split(' ');
+        words.forEach((word, idx) => {
+          const wordWrap = document.createElement('span');
+          wordWrap.className = 'split-word-wrap';
+          const innerSpan = document.createElement('span');
+          innerSpan.className = 'split-word-inner';
+          innerSpan.textContent = word;
+          innerSpan.style.transitionDelay = `${idx * 0.05}s`;
+          wordWrap.appendChild(innerSpan);
+          element.appendChild(wordWrap);
+        });
+
+        // Trigger slide-up animation in next frame
+        requestAnimationFrame(() => {
+          element.querySelectorAll('.split-word-inner').forEach(span => {
+            span.classList.add('split-active');
+          });
+        });
       }
 
+      function updateStageContent(index) {
+        if (index === currentStageIndex) return;
+        currentStageIndex = index;
+        const data = STAGES[index];
+
+        // Animate Lead & Title with Split Text
+        applySplitText(heroLead, data.lead);
+        applySplitText(heroTitle, data.title);
+
+        // Fade in description
+        heroDesc.style.opacity = '0';
+        setTimeout(() => {
+          heroDesc.textContent = data.desc;
+          heroDesc.style.opacity = '1';
+        }, 120);
+
+        // Update Buttons
+        btnPrimary.textContent = data.btn1.text;
+        btnPrimary.href = data.btn1.href;
+        btnPrimary.target = data.btn1.target || '_self';
+
+        btnSecondary.textContent = data.btn2.text;
+        btnSecondary.href = data.btn2.href;
+        btnSecondary.target = data.btn2.target || '_blank';
+
+        // Update Nav active
+        navItems.forEach((item, i) => {
+          if (i === index) item.classList.add('active');
+          else item.classList.remove('active');
+        });
+
+        // Update Pagination Dots
+        pageDots.forEach((dot, i) => {
+          if (i === index) dot.classList.add('active');
+          else dot.classList.remove('active');
+        });
+      }
+
+      // Initial stage render
+      updateStageContent(0);
+
+      // ========================================================
+      // SCROLL & ANIMATION TICK LOOP
+      // ========================================================
       function tick() {
         const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight || 1;
         const maxScroll = scrollHeight - window.innerHeight;
@@ -2314,13 +860,22 @@
           }
         }
 
-        updateUI(currentProgress);
+        // Update Scrubber bar
+        const pct = (currentProgress * 100).toFixed(2);
+        if (scrubProgress) scrubProgress.style.width = `${pct}%`;
+        if (scrubThumb) scrubThumb.style.left = `${pct}%`;
+
+        // Calculate stage
+        let stageIdx = Math.min(3, Math.floor(currentProgress * 4));
+        if (currentProgress >= 0.96) stageIdx = 3;
+        updateStageContent(stageIdx);
+
         requestAnimationFrame(tick);
       }
 
       requestAnimationFrame(tick);
 
-      // Navigation clicks to jump to sections
+      // Scroll to stage
       window.scrollToStage = function(index) {
         const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
         const maxScroll = scrollHeight - window.innerHeight;
@@ -2328,81 +883,91 @@
         window.scrollTo({ top: targetScroll, behavior: 'smooth' });
       };
 
-      navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-          const sec = parseInt(link.getAttribute('data-section'), 10);
-          window.scrollToStage(sec);
+      // Click nav items to scroll
+      navItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const s = parseInt(item.getAttribute('data-stage'), 10);
+          window.scrollToStage(s);
         });
       });
 
-      // ========================================================
-      // AI-NATIVE CINEMA PROMO INTRO CONTROLS
-      // ========================================================
-      const introOverlay = document.getElementById('cinema-intro-overlay');
-      const introFill = document.getElementById('intro-progress-fill');
-      let introTimer = null;
+      // Click dots to scroll
+      pageDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const s = parseInt(dot.getAttribute('data-stage'), 10);
+          window.scrollToStage(s);
+        });
+      });
 
-      function startIntroAnimation() {
-        if (!introOverlay) return;
-        introOverlay.classList.remove('dismissed');
-        if (introFill) {
-          introFill.style.width = '0%';
-          setTimeout(() => {
-            introFill.style.width = '100%';
-          }, 60);
+      // Scrub Line Interactive Drag / Click
+      const scrubContainer = document.getElementById('scrub-line-container');
+      if (scrubContainer) {
+        let isScrubbing = false;
+
+        function handleScrub(e) {
+          const rect = scrubContainer.getBoundingClientRect();
+          const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          const pos = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+          const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+          const maxScroll = scrollHeight - window.innerHeight;
+          window.scrollTo(0, pos * maxScroll);
         }
-        clearTimeout(introTimer);
-        introTimer = setTimeout(() => {
-          dismissIntro();
-        }, 3600);
+
+        scrubContainer.addEventListener('mousedown', (e) => {
+          isScrubbing = true;
+          handleScrub(e);
+        });
+        window.addEventListener('mousemove', (e) => {
+          if (isScrubbing) handleScrub(e);
+        });
+        window.addEventListener('mouseup', () => {
+          isScrubbing = false;
+        });
+
+        scrubContainer.addEventListener('touchstart', (e) => {
+          isScrubbing = true;
+          handleScrub(e);
+        }, { passive: true });
+        window.addEventListener('touchmove', (e) => {
+          if (isScrubbing) handleScrub(e);
+        }, { passive: true });
+        window.addEventListener('touchend', () => {
+          isScrubbing = false;
+        });
       }
 
-      window.dismissIntro = function() {
-        if (introOverlay) {
-          introOverlay.classList.add('dismissed');
+      // Auto Play Toggle
+      let isAutoPlaying = false;
+      let autoPlayAnim = null;
+
+      if (btnPlay) {
+        btnPlay.addEventListener('click', () => {
+          isAutoPlaying = !isAutoPlaying;
+          if (isAutoPlaying) {
+            btnPlay.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
+            btnPlay.title = 'Pause Scroll';
+            runAutoPlay();
+          } else {
+            btnPlay.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>';
+            btnPlay.title = 'Auto Play Frame Scroll';
+            cancelAnimationFrame(autoPlayAnim);
+          }
+        });
+
+        function runAutoPlay() {
+          const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+          const maxScroll = scrollHeight - window.innerHeight;
+          let currentY = window.scrollY || window.pageYOffset || 0;
+          currentY += 4;
+          if (currentY >= maxScroll) {
+            currentY = 0;
+          }
+          window.scrollTo(0, currentY);
+          if (isAutoPlaying) {
+            autoPlayAnim = requestAnimationFrame(runAutoPlay);
+          }
         }
-        clearTimeout(introTimer);
-      };
-
-      window.playPromoIntro = function() {
-        startIntroAnimation();
-      };
-
-      // Launch intro on page load
-      startIntroAnimation();
-
-      // ========================================================
-      // HIGH PERFORMANCE DESKTOP DRAG SCRUBBING
-      // Mobile uses native hardware-accelerated touch momentum
-      // ========================================================
-      let isDragging = false;
-      let startY = 0;
-      let startScroll = 0;
-
-      // Mouse Scrub (Desktop)
-      window.addEventListener('mousedown', (e) => {
-        if (e.target.closest('a') || e.target.closest('button') || e.target.closest('.preview-card') || e.target.closest('.skill-card') || e.target.closest('.cinema-intro-overlay')) {
-          return;
-        }
-        if (e.button === 0) {
-          isDragging = true;
-          startY = e.clientY;
-          startScroll = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
-        }
-      });
-
-      window.addEventListener('mousemove', (e) => {
-        if (isDragging) {
-          const deltaY = e.clientY - startY;
-          const maxScroll = (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight;
-          const nextScroll = Math.max(0, Math.min(maxScroll, startScroll - deltaY * 2.5));
-          window.scrollTo(0, nextScroll);
-        }
-      });
-
-      window.addEventListener('mouseup', () => {
-        isDragging = false;
-      });
+      }
     })();
   </script>
 </body>
